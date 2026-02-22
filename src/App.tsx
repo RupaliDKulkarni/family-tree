@@ -13,7 +13,8 @@ import {
   setCurrentTreeId,
   downloadTree,
   createEmptyTree,
-  generateTreeId
+  generateTreeId,
+  loadPublicTreesIfNeeded
 } from './utils/storage';
 import './App.css';
 
@@ -36,6 +37,7 @@ function App() {
   const [showFullTree, setShowFullTree] = useState(false);
 
   useEffect(() => {
+    loadPublicTreesIfNeeded();
     loadTrees();
   }, []);
 

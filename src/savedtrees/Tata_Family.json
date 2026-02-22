@@ -1,0 +1,407 @@
+{
+  "treeId": "tree_1771786086111",
+  "treeName": "Tata Family",
+  "creatorEmailId": "user@example.com",
+  "createDate": "2024-01-01T00:00:00.000Z",
+  "modifyDate": "2026-02-22T18:49:55.589Z",
+  "defaultPersonId": "ratan-tata",
+  "treeData": [
+    {
+      "personId": "nusserwanji",
+      "firstName": "Nusserwanji",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1822-01-01",
+      "dod": "1886-01-01",
+      "address": "Navsari, Gujarat",
+      "notes": "Father of Jamsetji Tata. Parsi priest turned merchant.",
+      "spouses": []
+    },
+    {
+      "personId": "jamsetji",
+      "firstName": "Jamsetji",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1839-03-03",
+      "dod": "1904-05-19",
+      "address": "Mumbai",
+      "notes": "Founder of Tata Group (1868). Father of Indian Industry.",
+      "spouses": [
+        {
+          "spouseId": "hirabai",
+          "marriageDate": "1858-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "nusserwanji"
+    },
+    {
+      "personId": "hirabai",
+      "firstName": "Hirabai",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1840-01-01",
+      "dod": "1904-01-01",
+      "address": "Mumbai",
+      "notes": "Wife of Jamsetji Tata.",
+      "spouses": [
+        {
+          "spouseId": "jamsetji",
+          "marriageDate": "1858-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "dorabji",
+      "firstName": "Dorabji",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1859-08-27",
+      "dod": "1932-06-03",
+      "address": "Mumbai",
+      "notes": "Sir Dorabji Tata. Chairman (1904-1932). Tata Steel founder.",
+      "spouses": [
+        {
+          "spouseId": "meherbai",
+          "marriageDate": "1897-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "jamsetji",
+      "motherId": "hirabai"
+    },
+    {
+      "personId": "meherbai",
+      "firstName": "Meherbai",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1879-01-01",
+      "dod": "1931-01-01",
+      "address": "Mumbai",
+      "notes": "Lady Meherbai. Wife of Dorabji.",
+      "spouses": [
+        {
+          "spouseId": "dorabji",
+          "marriageDate": "1897-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "ratanji-sr",
+      "firstName": "Ratanji",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1871-01-17",
+      "dod": "1918-09-05",
+      "address": "Mumbai",
+      "notes": "Sir Ratan Tata. Adopted Naval Tata.",
+      "spouses": [
+        {
+          "spouseId": "navajbai",
+          "marriageDate": "1893-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "jamsetji",
+      "motherId": "hirabai"
+    },
+    {
+      "personId": "navajbai",
+      "firstName": "Navajbai",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1878-01-01",
+      "dod": "1965-01-01",
+      "address": "Mumbai",
+      "notes": "Lady Navajbai. Adopted Naval Tata.",
+      "spouses": [
+        {
+          "spouseId": "ratanji-sr",
+          "marriageDate": "1893-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "rd-tata",
+      "firstName": "Ratanji Dadabhoy",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1856-01-01",
+      "dod": "1926-01-01",
+      "address": "Paris",
+      "notes": "R.D. Tata. Father of JRD Tata.",
+      "spouses": [
+        {
+          "spouseId": "suzanne",
+          "marriageDate": "1902-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "suzanne",
+      "firstName": "Suzanne",
+      "lastName": "Briere",
+      "gender": "female",
+      "dob": "1880-01-01",
+      "dod": "1950-01-01",
+      "address": "Paris",
+      "notes": "French wife of R.D. Tata.",
+      "spouses": [
+        {
+          "spouseId": "rd-tata",
+          "marriageDate": "1902-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "jrd-tata",
+      "firstName": "Jehangir Ratanji Dadabhoy",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1904-07-29",
+      "dod": "1993-11-29",
+      "address": "Mumbai",
+      "notes": "JRD Tata. Chairman (1938-1991). Bharat Ratna. Founded Air India, TCS.",
+      "spouses": [
+        {
+          "spouseId": "thelma",
+          "marriageDate": "1930-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "rd-tata",
+      "motherId": "suzanne"
+    },
+    {
+      "personId": "thelma",
+      "firstName": "Thelma",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1910-01-01",
+      "dod": "2000-01-01",
+      "address": "Mumbai",
+      "notes": "Wife of JRD Tata.",
+      "spouses": [
+        {
+          "spouseId": "jrd-tata",
+          "marriageDate": "1930-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "naval",
+      "firstName": "Naval Hormusji",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1904-08-30",
+      "dod": "1989-05-05",
+      "address": "Mumbai",
+      "notes": "Adopted by Ratanji Sr. Father of Ratan, Jimmy, Noel.",
+      "spouses": [
+        {
+          "spouseId": "sonoo",
+          "marriageDate": "1936-01-01",
+          "divorceDate": "1948-01-01"
+        },
+        {
+          "spouseId": "simone",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "ratanji-sr",
+      "motherId": "navajbai"
+    },
+    {
+      "personId": "sonoo",
+      "firstName": "Sooni",
+      "lastName": "Commissariat",
+      "gender": "female",
+      "dob": "1913-01-01",
+      "dod": "1982-01-01",
+      "address": "Mumbai",
+      "notes": "First wife of Naval Tata.",
+      "spouses": [
+        {
+          "spouseId": "naval",
+          "marriageDate": "1936-01-01",
+          "divorceDate": "1948-01-01"
+        }
+      ]
+    },
+    {
+      "personId": "simone",
+      "firstName": "Simone",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1930-01-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Swiss. Second wife of Naval. Mother of Noel.",
+      "spouses": [
+        {
+          "spouseId": "naval",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "ratan-tata",
+      "firstName": "Ratan Naval",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1937-12-28",
+      "dod": "2024-10-09",
+      "address": "Mumbai",
+      "notes": "Chairman (1991-2012). Padma Vibhushan. Acquired Jaguar, Corus.",
+      "spouses": [],
+      "fatherId": "naval",
+      "motherId": "sonoo"
+    },
+    {
+      "personId": "jimmy",
+      "firstName": "Jimmy Naval",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1940-01-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Brother of Ratan Tata. Private life.",
+      "spouses": [],
+      "fatherId": "naval",
+      "motherId": "sonoo"
+    },
+    {
+      "personId": "noel",
+      "firstName": "Noel Naval",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1957-12-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Chairman Tata Trusts (2024). Half-brother of Ratan.",
+      "spouses": [
+        {
+          "spouseId": "aloo",
+          "marriageDate": "1989-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "naval",
+      "motherId": "simone"
+    },
+    {
+      "personId": "pallonji",
+      "firstName": "Pallonji",
+      "lastName": "Mistry",
+      "gender": "male",
+      "dob": "1929-06-01",
+      "dod": "2022-06-28",
+      "address": "Mumbai",
+      "notes": "Owned 18% of Tata Sons.",
+      "spouses": [
+        {
+          "spouseId": "patsy",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "patsy",
+      "firstName": "Patsy",
+      "lastName": "Mistry",
+      "gender": "female",
+      "dob": "1932-01-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Wife of Pallonji.",
+      "spouses": [
+        {
+          "spouseId": "pallonji",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "aloo",
+      "firstName": "Aloo",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1965-01-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Wife of Noel. Sister of Cyrus Mistry.",
+      "spouses": [
+        {
+          "spouseId": "noel",
+          "marriageDate": "1989-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "pallonji",
+      "motherId": "patsy"
+    },
+    {
+      "personId": "cyrus",
+      "firstName": "Cyrus",
+      "lastName": "Mistry",
+      "gender": "male",
+      "dob": "1968-07-04",
+      "dod": "2022-09-04",
+      "address": "Mumbai",
+      "notes": "Chairman Tata Sons (2012-16). Died in accident.",
+      "spouses": [],
+      "fatherId": "pallonji",
+      "motherId": "patsy"
+    },
+    {
+      "personId": "leah",
+      "firstName": "Leah",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1990-01-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Daughter of Noel. Works at Taj Hotels.",
+      "spouses": [],
+      "fatherId": "noel",
+      "motherId": "aloo"
+    },
+    {
+      "personId": "maya",
+      "firstName": "Maya",
+      "lastName": "Tata",
+      "gender": "female",
+      "dob": "1992-01-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Daughter of Noel and Aloo.",
+      "spouses": [],
+      "fatherId": "noel",
+      "motherId": "aloo"
+    },
+    {
+      "personId": "neville",
+      "firstName": "Neville",
+      "lastName": "Tata",
+      "gender": "male",
+      "dob": "1994-01-01",
+      "dod": null,
+      "address": "Mumbai",
+      "notes": "Son of Noel. Works at Trent.",
+      "spouses": [],
+      "fatherId": "noel",
+      "motherId": "aloo"
+    }
+  ],
+  "isPublic": true
+}

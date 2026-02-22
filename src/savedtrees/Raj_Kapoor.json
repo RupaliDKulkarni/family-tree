@@ -1,0 +1,913 @@
+{
+  "treeId": "tree_1771786056235",
+  "treeName": "Raj Kapoor",
+  "creatorEmailId": "user@example.com",
+  "createDate": "2024-01-01T00:00:00.000Z",
+  "modifyDate": "2026-02-22T18:47:49.164Z",
+  "treeData": [
+    {
+      "personId": "p001",
+      "firstName": "Prithviraj",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1906-11-03",
+      "dod": "1972-05-29",
+      "address": "Mumbai, India",
+      "notes": "Patriarch of Kapoor family, Pioneer of Indian cinema",
+      "spouses": [
+        {
+          "spouseId": "p002",
+          "marriageDate": "1923-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p002",
+      "firstName": "Ramsarni",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "1908-01-01",
+      "dod": "1990-01-01",
+      "address": "Mumbai, India",
+      "notes": "Wife of Prithviraj Kapoor",
+      "spouses": [
+        {
+          "spouseId": "p001",
+          "marriageDate": "1923-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p003",
+      "firstName": "Raj",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1924-12-14",
+      "dod": "1988-06-02",
+      "address": "Chembur, Mumbai",
+      "notes": "The Showman of Indian Cinema, Director-Actor-Producer",
+      "spouses": [
+        {
+          "spouseId": "p004",
+          "marriageDate": "1946-05-14",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p001",
+      "motherId": "p002"
+    },
+    {
+      "personId": "p004",
+      "firstName": "Krishna",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "1930-12-25",
+      "dod": "2018-10-01",
+      "address": "Chembur, Mumbai",
+      "notes": "Wife of Raj Kapoor",
+      "spouses": [
+        {
+          "spouseId": "p003",
+          "marriageDate": "1946-05-14",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p005",
+      "firstName": "Shammi",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1931-10-21",
+      "dod": "2011-08-14",
+      "address": "Mumbai, India",
+      "notes": "Elvis of India, Actor",
+      "spouses": [
+        {
+          "spouseId": "p006",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p001",
+      "motherId": "p002"
+    },
+    {
+      "personId": "p006",
+      "firstName": "Geeta",
+      "lastName": "Bali",
+      "gender": "female",
+      "dob": "1930-09-22",
+      "dod": "1965-01-21",
+      "address": "Mumbai, India",
+      "notes": "Actress, First wife of Shammi Kapoor",
+      "spouses": [
+        {
+          "spouseId": "p005",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p007",
+      "firstName": "Shashi",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1938-03-18",
+      "dod": "2017-12-04",
+      "address": "Mumbai, India",
+      "notes": "Actor, Producer, Prithvi Theatre",
+      "spouses": [
+        {
+          "spouseId": "p008",
+          "marriageDate": "1958-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p001",
+      "motherId": "p002"
+    },
+    {
+      "personId": "p008",
+      "firstName": "Jennifer",
+      "lastName": "Kendal",
+      "gender": "female",
+      "dob": "1934-02-28",
+      "dod": "1984-09-07",
+      "address": "Mumbai, India",
+      "notes": "British Actress, Wife of Shashi Kapoor",
+      "spouses": [
+        {
+          "spouseId": "p007",
+          "marriageDate": "1958-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p009",
+      "firstName": "Randhir",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1947-02-15",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor, Director",
+      "spouses": [
+        {
+          "spouseId": "p010",
+          "marriageDate": "1971-11-06",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p010",
+      "firstName": "Babita",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "1948-04-20",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actress",
+      "spouses": [
+        {
+          "spouseId": "p009",
+          "marriageDate": "1971-11-06",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p011",
+      "firstName": "Rishi",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1952-09-04",
+      "dod": "2020-04-30",
+      "address": "Mumbai, India",
+      "notes": "Actor, Bobby fame",
+      "spouses": [
+        {
+          "spouseId": "p012",
+          "marriageDate": "1980-01-22",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p012",
+      "firstName": "Neetu",
+      "lastName": "Singh",
+      "gender": "female",
+      "dob": "1958-07-08",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actress",
+      "spouses": [
+        {
+          "spouseId": "p011",
+          "marriageDate": "1980-01-22",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p013",
+      "firstName": "Rajiv",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1962-08-25",
+      "dod": "2021-02-09",
+      "address": "Mumbai, India",
+      "notes": "Actor, Director",
+      "spouses": [],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p014",
+      "firstName": "Ritu",
+      "lastName": "Nanda",
+      "gender": "female",
+      "dob": "1948-01-01",
+      "dod": "2020-01-14",
+      "address": "Delhi, India",
+      "notes": "Businesswoman, Insurance Executive",
+      "spouses": [
+        {
+          "spouseId": "p015",
+          "marriageDate": "1969-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p015",
+      "firstName": "Rajan",
+      "lastName": "Nanda",
+      "gender": "male",
+      "dob": "1941-01-01",
+      "dod": "2018-08-05",
+      "address": "Delhi, India",
+      "notes": "Chairman of Escorts Group",
+      "spouses": [
+        {
+          "spouseId": "p014",
+          "marriageDate": "1969-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p016",
+      "firstName": "Rima",
+      "lastName": "Jain",
+      "gender": "female",
+      "dob": "1956-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Daughter of Raj Kapoor",
+      "spouses": [
+        {
+          "spouseId": "p017",
+          "marriageDate": "1978-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p017",
+      "firstName": "Manoj",
+      "lastName": "Jain",
+      "gender": "male",
+      "dob": "1954-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Businessman",
+      "spouses": [
+        {
+          "spouseId": "p016",
+          "marriageDate": "1978-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p018",
+      "firstName": "Aditya Raj",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1956-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Son of Shammi Kapoor and Geeta Bali",
+      "spouses": [],
+      "fatherId": "p005",
+      "motherId": "p006"
+    },
+    {
+      "personId": "p019",
+      "firstName": "Kunal",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1959-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor, Son of Shashi Kapoor",
+      "spouses": [
+        {
+          "spouseId": "p020",
+          "marriageDate": "1985-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p007",
+      "motherId": "p008"
+    },
+    {
+      "personId": "p020",
+      "firstName": "Sheena",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "1962-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Wife of Kunal Kapoor",
+      "spouses": [
+        {
+          "spouseId": "p019",
+          "marriageDate": "1985-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p021",
+      "firstName": "Karan",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1962-01-01",
+      "dod": "",
+      "address": "London, UK",
+      "notes": "Former Model and Actor, Son of Shashi Kapoor",
+      "spouses": [],
+      "fatherId": "p007",
+      "motherId": "p008"
+    },
+    {
+      "personId": "p022",
+      "firstName": "Sanjana",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "1967-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Theatre Director, Daughter of Shashi Kapoor",
+      "spouses": [],
+      "fatherId": "p007",
+      "motherId": "p008"
+    },
+    {
+      "personId": "p023",
+      "firstName": "Karisma",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "1974-06-25",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actress",
+      "spouses": [
+        {
+          "spouseId": "p024",
+          "marriageDate": "2003-09-29",
+          "divorceDate": "2016-01-01"
+        }
+      ],
+      "fatherId": "p009",
+      "motherId": "p010"
+    },
+    {
+      "personId": "p024",
+      "firstName": "Sanjay",
+      "lastName": "Kapur",
+      "gender": "male",
+      "dob": "1965-01-01",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Businessman, Ex-husband of Karisma",
+      "spouses": [
+        {
+          "spouseId": "p023",
+          "marriageDate": "2003-09-29",
+          "divorceDate": "2016-01-01"
+        }
+      ]
+    },
+    {
+      "personId": "p025",
+      "firstName": "Kareena",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "1980-09-21",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actress, Bebo",
+      "spouses": [
+        {
+          "spouseId": "p026",
+          "marriageDate": "2012-10-16",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p009",
+      "motherId": "p010"
+    },
+    {
+      "personId": "p026",
+      "firstName": "Saif Ali",
+      "lastName": "Khan",
+      "gender": "male",
+      "dob": "1970-08-16",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor, Nawab of Pataudi",
+      "spouses": [
+        {
+          "spouseId": "p025",
+          "marriageDate": "2012-10-16",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p027",
+      "firstName": "Riddhima",
+      "lastName": "Kapoor Sahni",
+      "gender": "female",
+      "dob": "1980-09-15",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Fashion Designer",
+      "spouses": [
+        {
+          "spouseId": "p028",
+          "marriageDate": "2006-01-25",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p011",
+      "motherId": "p012"
+    },
+    {
+      "personId": "p028",
+      "firstName": "Bharat",
+      "lastName": "Sahni",
+      "gender": "male",
+      "dob": "1978-01-01",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Businessman",
+      "spouses": [
+        {
+          "spouseId": "p027",
+          "marriageDate": "2006-01-25",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p029",
+      "firstName": "Ranbir",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1982-09-28",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor",
+      "spouses": [
+        {
+          "spouseId": "p030",
+          "marriageDate": "2022-04-14",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p011",
+      "motherId": "p012"
+    },
+    {
+      "personId": "p030",
+      "firstName": "Alia",
+      "lastName": "Bhatt",
+      "gender": "female",
+      "dob": "1993-03-15",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actress",
+      "spouses": [
+        {
+          "spouseId": "p029",
+          "marriageDate": "2022-04-14",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p031",
+      "firstName": "Nikhil",
+      "lastName": "Nanda",
+      "gender": "male",
+      "dob": "1974-01-01",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Managing Director of Escorts Group",
+      "spouses": [
+        {
+          "spouseId": "p032",
+          "marriageDate": "1997-02-17",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p015",
+      "motherId": "p014"
+    },
+    {
+      "personId": "p032",
+      "firstName": "Shweta",
+      "lastName": "Bachchan",
+      "gender": "female",
+      "dob": "1974-03-17",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Daughter of Amitabh Bachchan, Author",
+      "spouses": [
+        {
+          "spouseId": "p031",
+          "marriageDate": "1997-02-17",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p048",
+      "motherId": "p049"
+    },
+    {
+      "personId": "p033",
+      "firstName": "Natasha",
+      "lastName": "Nanda",
+      "gender": "female",
+      "dob": "1978-01-01",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Daughter of Ritu Nanda",
+      "spouses": [],
+      "fatherId": "p015",
+      "motherId": "p014"
+    },
+    {
+      "personId": "p034",
+      "firstName": "Armaan",
+      "lastName": "Jain",
+      "gender": "male",
+      "dob": "1990-02-16",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor",
+      "spouses": [
+        {
+          "spouseId": "p035",
+          "marriageDate": "2020-02-03",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p017",
+      "motherId": "p016"
+    },
+    {
+      "personId": "p035",
+      "firstName": "Anissa",
+      "lastName": "Malhotra",
+      "gender": "female",
+      "dob": "1992-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Wife of Armaan Jain",
+      "spouses": [
+        {
+          "spouseId": "p034",
+          "marriageDate": "2020-02-03",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p036",
+      "firstName": "Aadar",
+      "lastName": "Jain",
+      "gender": "male",
+      "dob": "1994-08-27",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor",
+      "spouses": [],
+      "fatherId": "p017",
+      "motherId": "p016"
+    },
+    {
+      "personId": "p037",
+      "firstName": "Zahan",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "1998-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor, Son of Kunal Kapoor",
+      "spouses": [],
+      "fatherId": "p019",
+      "motherId": "p020"
+    },
+    {
+      "personId": "p038",
+      "firstName": "Shaira",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "2000-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Daughter of Kunal Kapoor",
+      "spouses": [],
+      "fatherId": "p019",
+      "motherId": "p020"
+    },
+    {
+      "personId": "p039",
+      "firstName": "Samaira",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "2005-03-11",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Daughter of Karisma Kapoor",
+      "spouses": [],
+      "fatherId": "p024",
+      "motherId": "p023"
+    },
+    {
+      "personId": "p040",
+      "firstName": "Kiaan Raj",
+      "lastName": "Kapoor",
+      "gender": "male",
+      "dob": "2010-03-12",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Son of Karisma Kapoor",
+      "spouses": [],
+      "fatherId": "p024",
+      "motherId": "p023"
+    },
+    {
+      "personId": "p041",
+      "firstName": "Taimur Ali",
+      "lastName": "Khan",
+      "gender": "male",
+      "dob": "2016-12-20",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Son of Kareena and Saif",
+      "spouses": [],
+      "fatherId": "p026",
+      "motherId": "p025"
+    },
+    {
+      "personId": "p042",
+      "firstName": "Jehangir Ali",
+      "lastName": "Khan",
+      "gender": "male",
+      "dob": "2021-02-21",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Son of Kareena and Saif, called Jeh",
+      "spouses": [],
+      "fatherId": "p026",
+      "motherId": "p025"
+    },
+    {
+      "personId": "p043",
+      "firstName": "Samara",
+      "lastName": "Sahni",
+      "gender": "female",
+      "dob": "2011-03-23",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Daughter of Riddhima and Bharat Sahni",
+      "spouses": [],
+      "fatherId": "p028",
+      "motherId": "p027"
+    },
+    {
+      "personId": "p044",
+      "firstName": "Raha",
+      "lastName": "Kapoor",
+      "gender": "female",
+      "dob": "2022-11-06",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Daughter of Ranbir and Alia",
+      "spouses": [],
+      "fatherId": "p029",
+      "motherId": "p030"
+    },
+    {
+      "personId": "p045",
+      "firstName": "Navya Naveli",
+      "lastName": "Nanda",
+      "gender": "female",
+      "dob": "1997-12-06",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Entrepreneur, Co-founder of Aara Health",
+      "spouses": [],
+      "fatherId": "p031",
+      "motherId": "p032"
+    },
+    {
+      "personId": "p046",
+      "firstName": "Agastya",
+      "lastName": "Nanda",
+      "gender": "male",
+      "dob": "2000-11-23",
+      "dod": "",
+      "address": "Delhi, India",
+      "notes": "Actor, The Archies",
+      "spouses": [],
+      "fatherId": "p031",
+      "motherId": "p032"
+    },
+    {
+      "personId": "p047",
+      "firstName": "Harivansh Rai",
+      "lastName": "Bachchan",
+      "gender": "male",
+      "dob": "1907-11-27",
+      "dod": "2003-01-18",
+      "address": "Mumbai, India",
+      "notes": "Renowned Hindi poet, Madhushala fame",
+      "spouses": [
+        {
+          "spouseId": "p054",
+          "marriageDate": "1941-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p054",
+      "firstName": "Teji",
+      "lastName": "Bachchan",
+      "gender": "female",
+      "dob": "1914-01-01",
+      "dod": "2007-12-21",
+      "address": "Mumbai, India",
+      "notes": "Social activist, Mother of Amitabh Bachchan",
+      "spouses": [
+        {
+          "spouseId": "p047",
+          "marriageDate": "1941-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p048",
+      "firstName": "Amitabh",
+      "lastName": "Bachchan",
+      "gender": "male",
+      "dob": "1942-10-11",
+      "dod": "",
+      "address": "Jalsa, Mumbai",
+      "notes": "Megastar, Shahenshah of Bollywood",
+      "spouses": [
+        {
+          "spouseId": "p049",
+          "marriageDate": "1973-06-03",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p047",
+      "motherId": "p054"
+    },
+    {
+      "personId": "p049",
+      "firstName": "Jaya",
+      "lastName": "Bachchan",
+      "gender": "female",
+      "dob": "1948-04-09",
+      "dod": "",
+      "address": "Jalsa, Mumbai",
+      "notes": "Actress, Member of Parliament",
+      "spouses": [
+        {
+          "spouseId": "p048",
+          "marriageDate": "1973-06-03",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p050",
+      "firstName": "Abhishek",
+      "lastName": "Bachchan",
+      "gender": "male",
+      "dob": "1976-02-05",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actor",
+      "spouses": [
+        {
+          "spouseId": "p051",
+          "marriageDate": "2007-04-20",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p048",
+      "motherId": "p049"
+    },
+    {
+      "personId": "p051",
+      "firstName": "Aishwarya Rai",
+      "lastName": "Bachchan",
+      "gender": "female",
+      "dob": "1973-11-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Actress, Miss World 1994",
+      "spouses": [
+        {
+          "spouseId": "p050",
+          "marriageDate": "2007-04-20",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p052",
+      "firstName": "Aaradhya",
+      "lastName": "Bachchan",
+      "gender": "female",
+      "dob": "2011-11-16",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Daughter of Abhishek and Aishwarya",
+      "spouses": [],
+      "fatherId": "p050",
+      "motherId": "p051"
+    },
+    {
+      "personId": "p053",
+      "firstName": "Ajitabh",
+      "lastName": "Bachchan",
+      "gender": "male",
+      "dob": "1948-01-01",
+      "dod": "",
+      "address": "Switzerland",
+      "notes": "Businessman, Brother of Amitabh Bachchan",
+      "spouses": [
+        {
+          "spouseId": "p055",
+          "marriageDate": "1975-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p047",
+      "motherId": "p054"
+    },
+    {
+      "personId": "p055",
+      "firstName": "Ramola",
+      "lastName": "Bachchan",
+      "gender": "female",
+      "dob": "1950-01-01",
+      "dod": "",
+      "address": "Switzerland",
+      "notes": "Wife of Ajitabh Bachchan",
+      "spouses": [
+        {
+          "spouseId": "p053",
+          "marriageDate": "1975-01-01",
+          "divorceDate": ""
+        }
+      ]
+    }
+  ],
+  "isPublic": true
+}

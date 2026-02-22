@@ -1,11 +1,32 @@
 import { FamilyTree, TreeListItem } from '../types';
+import { getPublicTrees } from '../savedtrees';
 
 const TREES_KEY = 'familyTrees';
 const CURRENT_TREE_KEY = 'currentTreeId';
+const PUBLIC_TREES_LOADED_KEY = 'publicTreesLoaded';
 
 export const getAllTrees = (): FamilyTree[] => {
   const data = localStorage.getItem(TREES_KEY);
   return data ? JSON.parse(data) : [];
+};
+
+export const loadPublicTreesIfNeeded = (): void => {
+  const alreadyLoaded = localStorage.getItem(PUBLIC_TREES_LOADED_KEY);
+  if (alreadyLoaded) return;
+
+  const existingTrees = getAllTrees();
+  const publicTrees = getPublicTrees();
+  
+  const newTrees = publicTrees.filter(
+    pt => !existingTrees.some(et => et.treeId === pt.treeId)
+  );
+
+  if (newTrees.length > 0) {
+    const allTrees = [...existingTrees, ...newTrees];
+    localStorage.setItem(TREES_KEY, JSON.stringify(allTrees));
+  }
+  
+  localStorage.setItem(PUBLIC_TREES_LOADED_KEY, 'true');
 };
 
 export const getTreeList = (): (TreeListItem & { isPublic?: boolean })[] => {
