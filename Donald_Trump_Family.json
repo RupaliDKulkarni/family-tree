@@ -1,0 +1,640 @@
+{
+  "treeId": "tree_1771786090971",
+  "treeName": "Donald Trump Family",
+  "creatorEmailId": "user@example.com",
+  "createDate": "2024-01-01T00:00:00.000Z",
+  "modifyDate": "2026-02-22T18:49:51.316Z",
+  "treeData": [
+    {
+      "personId": "p001",
+      "firstName": "Frederick",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1869-03-14",
+      "dod": "1918-05-30",
+      "address": "New York, USA",
+      "notes": "German-American businessman, Patriarch of Trump family",
+      "spouses": [
+        {
+          "spouseId": "p002",
+          "marriageDate": "1902-08-26",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p002",
+      "firstName": "Elizabeth Christ",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1880-10-10",
+      "dod": "1966-06-06",
+      "address": "New York, USA",
+      "notes": "German-American, Matriarch of Trump family",
+      "spouses": [
+        {
+          "spouseId": "p001",
+          "marriageDate": "1902-08-26",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p003",
+      "firstName": "Fred",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1905-10-11",
+      "dod": "1999-06-25",
+      "address": "Queens, New York",
+      "notes": "Real estate developer, Built Trump Organization foundation",
+      "spouses": [
+        {
+          "spouseId": "p004",
+          "marriageDate": "1936-01-11",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p001",
+      "motherId": "p002"
+    },
+    {
+      "personId": "p004",
+      "firstName": "Mary Anne",
+      "lastName": "MacLeod Trump",
+      "gender": "female",
+      "dob": "1912-05-10",
+      "dod": "2000-08-07",
+      "address": "Queens, New York",
+      "notes": "Scottish-American, Emigrated from Scotland",
+      "spouses": [
+        {
+          "spouseId": "p003",
+          "marriageDate": "1936-01-11",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p005",
+      "firstName": "Maryanne",
+      "lastName": "Trump Barry",
+      "gender": "female",
+      "dob": "1937-04-05",
+      "dod": "2023-11-13",
+      "address": "New York, USA",
+      "notes": "Senior United States Circuit Judge",
+      "spouses": [
+        {
+          "spouseId": "p006",
+          "marriageDate": "1984-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p006",
+      "firstName": "John",
+      "lastName": "Barry",
+      "gender": "male",
+      "dob": "1927-01-01",
+      "dod": "2000-01-01",
+      "address": "New York, USA",
+      "notes": "Attorney, Second husband of Maryanne",
+      "spouses": [
+        {
+          "spouseId": "p005",
+          "marriageDate": "1984-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p007",
+      "firstName": "Fred Jr.",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1938-10-14",
+      "dod": "1981-09-26",
+      "address": "New York, USA",
+      "notes": "Pilot for TWA, Died from alcoholism complications",
+      "spouses": [
+        {
+          "spouseId": "p008",
+          "marriageDate": "1962-01-01",
+          "divorceDate": "1971-01-01"
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p008",
+      "firstName": "Linda",
+      "lastName": "Clapp Trump",
+      "gender": "female",
+      "dob": "1940-01-01",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "First wife of Fred Trump Jr.",
+      "spouses": [
+        {
+          "spouseId": "p007",
+          "marriageDate": "1962-01-01",
+          "divorceDate": "1971-01-01"
+        }
+      ]
+    },
+    {
+      "personId": "p009",
+      "firstName": "Elizabeth",
+      "lastName": "Trump Grau",
+      "gender": "female",
+      "dob": "1942-04-30",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Administrative assistant at Chase Manhattan Bank",
+      "spouses": [
+        {
+          "spouseId": "p010",
+          "marriageDate": "1989-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p010",
+      "firstName": "James",
+      "lastName": "Grau",
+      "gender": "male",
+      "dob": "1940-01-01",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Film producer",
+      "spouses": [
+        {
+          "spouseId": "p009",
+          "marriageDate": "1989-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p011",
+      "firstName": "Donald",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1946-06-14",
+      "dod": "",
+      "address": "Mar-a-Lago, Florida",
+      "notes": "45th & 47th President of the United States, Businessman",
+      "spouses": [
+        {
+          "spouseId": "p012",
+          "marriageDate": "1977-04-07",
+          "divorceDate": "1992-03-22"
+        },
+        {
+          "spouseId": "p013",
+          "marriageDate": "1993-12-20",
+          "divorceDate": "1999-06-08"
+        },
+        {
+          "spouseId": "p014",
+          "marriageDate": "2005-01-22",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p012",
+      "firstName": "Ivana",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1949-02-20",
+      "dod": "2022-07-14",
+      "address": "New York, USA",
+      "notes": "Czech-American businesswoman, First wife of Donald Trump (1977-1992)",
+      "spouses": [
+        {
+          "spouseId": "p011",
+          "marriageDate": "1977-04-07",
+          "divorceDate": "1992-03-22"
+        }
+      ]
+    },
+    {
+      "personId": "p013",
+      "firstName": "Marla",
+      "lastName": "Maples",
+      "gender": "female",
+      "dob": "1963-10-27",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Actress, Second wife of Donald Trump (1993-1999)",
+      "spouses": [
+        {
+          "spouseId": "p011",
+          "marriageDate": "1993-12-20",
+          "divorceDate": "1999-06-08"
+        }
+      ]
+    },
+    {
+      "personId": "p014",
+      "firstName": "Melania",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1970-04-26",
+      "dod": "",
+      "address": "Mar-a-Lago, Florida",
+      "notes": "Former First Lady, Slovenian-American model, Third wife of Donald Trump (2005-present)",
+      "spouses": [
+        {
+          "spouseId": "p011",
+          "marriageDate": "2005-01-22",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p015",
+      "firstName": "Robert",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1948-08-26",
+      "dod": "2020-08-15",
+      "address": "New York, USA",
+      "notes": "Business executive at Trump Organization",
+      "spouses": [
+        {
+          "spouseId": "p016",
+          "marriageDate": "1984-01-01",
+          "divorceDate": "2009-01-01"
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p016",
+      "firstName": "Blaine",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1950-01-01",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Socialite, First wife of Robert Trump",
+      "spouses": [
+        {
+          "spouseId": "p015",
+          "marriageDate": "1984-01-01",
+          "divorceDate": "2009-01-01"
+        }
+      ]
+    },
+    {
+      "personId": "p017",
+      "firstName": "Donald Jr.",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1977-12-31",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Businessman, Executive VP of Trump Organization",
+      "spouses": [
+        {
+          "spouseId": "p018",
+          "marriageDate": "2005-11-12",
+          "divorceDate": "2018-03-15"
+        }
+      ],
+      "fatherId": "p011",
+      "motherId": "p012"
+    },
+    {
+      "personId": "p018",
+      "firstName": "Vanessa",
+      "lastName": "Haydon Trump",
+      "gender": "female",
+      "dob": "1977-12-18",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Former model and actress",
+      "spouses": [
+        {
+          "spouseId": "p017",
+          "marriageDate": "2005-11-12",
+          "divorceDate": "2018-03-15"
+        }
+      ]
+    },
+    {
+      "personId": "p019",
+      "firstName": "Ivanka",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1981-10-30",
+      "dod": "",
+      "address": "Miami, Florida",
+      "notes": "Businesswoman, Former Senior Advisor to the President",
+      "spouses": [
+        {
+          "spouseId": "p020",
+          "marriageDate": "2009-10-25",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p011",
+      "motherId": "p012"
+    },
+    {
+      "personId": "p020",
+      "firstName": "Jared",
+      "lastName": "Kushner",
+      "gender": "male",
+      "dob": "1981-01-10",
+      "dod": "",
+      "address": "Miami, Florida",
+      "notes": "Businessman, Former Senior Advisor to the President",
+      "spouses": [
+        {
+          "spouseId": "p019",
+          "marriageDate": "2009-10-25",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p021",
+      "firstName": "Eric",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1984-01-06",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Businessman, Executive VP of Trump Organization",
+      "spouses": [
+        {
+          "spouseId": "p022",
+          "marriageDate": "2014-11-08",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p011",
+      "motherId": "p012"
+    },
+    {
+      "personId": "p022",
+      "firstName": "Lara",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1982-10-12",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "TV producer, RNC Co-Chair",
+      "spouses": [
+        {
+          "spouseId": "p021",
+          "marriageDate": "2014-11-08",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p023",
+      "firstName": "Tiffany",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1993-10-13",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Lawyer, Socialite",
+      "spouses": [
+        {
+          "spouseId": "p024",
+          "marriageDate": "2022-11-12",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p011",
+      "motherId": "p013"
+    },
+    {
+      "personId": "p024",
+      "firstName": "Michael",
+      "lastName": "Boulos",
+      "gender": "male",
+      "dob": "1997-08-27",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Lebanese-American businessman",
+      "spouses": [
+        {
+          "spouseId": "p023",
+          "marriageDate": "2022-11-12",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p025",
+      "firstName": "Barron",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "2006-03-20",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Youngest child of Donald Trump",
+      "spouses": [],
+      "fatherId": "p011",
+      "motherId": "p014"
+    },
+    {
+      "personId": "p026",
+      "firstName": "Fred III",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "1963-01-01",
+      "dod": "",
+      "address": "Connecticut, USA",
+      "notes": "Real estate developer, Son of Fred Trump Jr.",
+      "spouses": [
+        {
+          "spouseId": "p027",
+          "marriageDate": "1989-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p007",
+      "motherId": "p008"
+    },
+    {
+      "personId": "p027",
+      "firstName": "Lisa",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1965-01-01",
+      "dod": "",
+      "address": "Connecticut, USA",
+      "notes": "Wife of Fred Trump III",
+      "spouses": [
+        {
+          "spouseId": "p026",
+          "marriageDate": "1989-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p028",
+      "firstName": "Mary",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "1965-05-03",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Clinical psychologist, Author of 'Too Much and Never Enough'",
+      "spouses": [],
+      "fatherId": "p007",
+      "motherId": "p008"
+    },
+    {
+      "personId": "p029",
+      "firstName": "Kai Madison",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "2007-05-12",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Eldest grandchild of Donald Trump, Golfer",
+      "spouses": [],
+      "fatherId": "p017",
+      "motherId": "p018"
+    },
+    {
+      "personId": "p030",
+      "firstName": "Donald III",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "2009-02-18",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Son of Donald Trump Jr.",
+      "spouses": [],
+      "fatherId": "p017",
+      "motherId": "p018"
+    },
+    {
+      "personId": "p031",
+      "firstName": "Tristan",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "2011-10-02",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Son of Donald Trump Jr.",
+      "spouses": [],
+      "fatherId": "p017",
+      "motherId": "p018"
+    },
+    {
+      "personId": "p032",
+      "firstName": "Spencer",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "2012-10-21",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Son of Donald Trump Jr.",
+      "spouses": [],
+      "fatherId": "p017",
+      "motherId": "p018"
+    },
+    {
+      "personId": "p033",
+      "firstName": "Chloe",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "2014-06-16",
+      "dod": "",
+      "address": "Florida, USA",
+      "notes": "Daughter of Donald Trump Jr.",
+      "spouses": [],
+      "fatherId": "p017",
+      "motherId": "p018"
+    },
+    {
+      "personId": "p034",
+      "firstName": "Arabella Rose",
+      "lastName": "Kushner",
+      "gender": "female",
+      "dob": "2011-07-17",
+      "dod": "",
+      "address": "Miami, Florida",
+      "notes": "Daughter of Ivanka and Jared Kushner",
+      "spouses": [],
+      "fatherId": "p020",
+      "motherId": "p019"
+    },
+    {
+      "personId": "p035",
+      "firstName": "Joseph Frederick",
+      "lastName": "Kushner",
+      "gender": "male",
+      "dob": "2013-10-14",
+      "dod": "",
+      "address": "Miami, Florida",
+      "notes": "Son of Ivanka and Jared Kushner",
+      "spouses": [],
+      "fatherId": "p020",
+      "motherId": "p019"
+    },
+    {
+      "personId": "p036",
+      "firstName": "Theodore James",
+      "lastName": "Kushner",
+      "gender": "male",
+      "dob": "2016-03-27",
+      "dod": "",
+      "address": "Miami, Florida",
+      "notes": "Son of Ivanka and Jared Kushner",
+      "spouses": [],
+      "fatherId": "p020",
+      "motherId": "p019"
+    },
+    {
+      "personId": "p037",
+      "firstName": "Eric Luke",
+      "lastName": "Trump",
+      "gender": "male",
+      "dob": "2017-09-12",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Son of Eric and Lara Trump",
+      "spouses": [],
+      "fatherId": "p021",
+      "motherId": "p022"
+    },
+    {
+      "personId": "p038",
+      "firstName": "Carolina Dorothy",
+      "lastName": "Trump",
+      "gender": "female",
+      "dob": "2019-08-19",
+      "dod": "",
+      "address": "New York, USA",
+      "notes": "Daughter of Eric and Lara Trump",
+      "spouses": [],
+      "fatherId": "p021",
+      "motherId": "p022"
+    }
+  ],
+  "isPublic": true
+}

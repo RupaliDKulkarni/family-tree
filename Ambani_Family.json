@@ -1,0 +1,302 @@
+{
+  "treeId": "tree_1771786601733",
+  "treeName": "Ambani Family",
+  "creatorEmailId": "user@example.com",
+  "createDate": "2024-01-01T00:00:00.000Z",
+  "isPublic": true,
+  "modifyDate": "2026-02-22T18:56:49.493Z",
+  "treeData": [
+    {
+      "personId": "p001",
+      "firstName": "Dhirubhai",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "1932-12-28",
+      "dod": "2002-07-06",
+      "address": "Mumbai, India",
+      "notes": "Founder of Reliance Industries",
+      "spouses": [
+        {
+          "spouseId": "p002",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p002",
+      "firstName": "Kokilaben",
+      "lastName": "Ambani",
+      "gender": "female",
+      "dob": "1934-01-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Matriarch of Ambani family",
+      "spouses": [
+        {
+          "spouseId": "p001",
+          "marriageDate": "1955-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p003",
+      "firstName": "Mukesh",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "1957-04-19",
+      "dod": "",
+      "address": "Antilia, Mumbai, India",
+      "notes": "Chairman of Reliance Industries",
+      "spouses": [
+        {
+          "spouseId": "p004",
+          "marriageDate": "1985-03-08",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p001",
+      "motherId": "p002"
+    },
+    {
+      "personId": "p004",
+      "firstName": "Nita",
+      "lastName": "Ambani",
+      "gender": "female",
+      "dob": "1963-11-01",
+      "dod": "",
+      "address": "Antilia, Mumbai, India",
+      "notes": "Founder of Reliance Foundation, Owner of Mumbai Indians",
+      "spouses": [
+        {
+          "spouseId": "p003",
+          "marriageDate": "1985-03-08",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p005",
+      "firstName": "Anil",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "1959-06-04",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Chairman of Reliance Group",
+      "spouses": [
+        {
+          "spouseId": "p006",
+          "marriageDate": "1991-02-17",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p001",
+      "motherId": "p002"
+    },
+    {
+      "personId": "p006",
+      "firstName": "Tina",
+      "lastName": "Ambani",
+      "gender": "female",
+      "dob": "1957-02-11",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Former Bollywood actress, Chairperson of Kokilaben Hospital",
+      "spouses": [
+        {
+          "spouseId": "p005",
+          "marriageDate": "1991-02-17",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p007",
+      "firstName": "Akash",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "1991-10-23",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Chairman of Reliance Jio",
+      "spouses": [
+        {
+          "spouseId": "p008",
+          "marriageDate": "2019-03-09",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p008",
+      "firstName": "Shloka",
+      "lastName": "Ambani",
+      "gender": "female",
+      "dob": "1990-07-11",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Director at Rosy Blue Diamonds",
+      "spouses": [
+        {
+          "spouseId": "p007",
+          "marriageDate": "2019-03-09",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p009",
+      "firstName": "Isha",
+      "lastName": "Ambani",
+      "gender": "female",
+      "dob": "1991-10-23",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Director at Reliance Retail, Twin of Akash",
+      "spouses": [
+        {
+          "spouseId": "p010",
+          "marriageDate": "2018-12-12",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p010",
+      "firstName": "Anand",
+      "lastName": "Piramal",
+      "gender": "male",
+      "dob": "1985-01-25",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Executive Director of Piramal Group",
+      "spouses": [
+        {
+          "spouseId": "p009",
+          "marriageDate": "2018-12-12",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p011",
+      "firstName": "Anant",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "1995-04-10",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Director at Reliance Industries",
+      "spouses": [
+        {
+          "spouseId": "p012",
+          "marriageDate": "2024-07-12",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p003",
+      "motherId": "p004"
+    },
+    {
+      "personId": "p012",
+      "firstName": "Radhika",
+      "lastName": "Merchant",
+      "gender": "female",
+      "dob": "1995-01-18",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Director at Encore Healthcare",
+      "spouses": [
+        {
+          "spouseId": "p011",
+          "marriageDate": "2024-07-12",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "personId": "p013",
+      "firstName": "Jai Anmol",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "1991-08-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Director at Reliance Capital",
+      "spouses": [],
+      "fatherId": "p005",
+      "motherId": "p006"
+    },
+    {
+      "personId": "p014",
+      "firstName": "Jai Anshul",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "1995-04-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "",
+      "spouses": [],
+      "fatherId": "p005",
+      "motherId": "p006"
+    },
+    {
+      "personId": "p015",
+      "firstName": "Prithvi",
+      "lastName": "Ambani",
+      "gender": "male",
+      "dob": "2020-12-10",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "First grandchild of Mukesh and Nita Ambani",
+      "spouses": [],
+      "fatherId": "p007",
+      "motherId": "p008"
+    },
+    {
+      "personId": "p016",
+      "firstName": "Veda",
+      "lastName": "Ambani",
+      "gender": "female",
+      "dob": "2023-05-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Daughter of Akash and Shloka Ambani",
+      "spouses": [],
+      "fatherId": "p007",
+      "motherId": "p008"
+    },
+    {
+      "personId": "p017",
+      "firstName": "Aadiya",
+      "lastName": "Piramal",
+      "gender": "female",
+      "dob": "2022-11-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Twin daughter of Isha and Anand Piramal",
+      "spouses": [],
+      "fatherId": "p010",
+      "motherId": "p009"
+    },
+    {
+      "personId": "p018",
+      "firstName": "Krishna",
+      "lastName": "Piramal",
+      "gender": "male",
+      "dob": "2022-11-01",
+      "dod": "",
+      "address": "Mumbai, India",
+      "notes": "Twin son of Isha and Anand Piramal",
+      "spouses": [],
+      "fatherId": "p010",
+      "motherId": "p009"
+    }
+  ]
+}
