@@ -1,0 +1,668 @@
+{
+  "treeId": "tree_00000",
+  "treeName": "Kulkarni-Server",
+  "creatorEmailId": "admin@familytree.com",
+  "createDate": "2024-01-01T00:00:00.000Z",
+  "modifyDate": "2025-11-13T23:27:23.676Z",
+  "treeData": [
+    {
+      "personId": "p1",
+      "firstName": "Narsinh ",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1952-09-27",
+      "dod": null,
+      "address": "Kanerwadi",
+      "notes": "",
+      "spouses": [
+        {
+          "spouseId": "p1757954227228",
+          "marriageDate": "1983-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p1757968516644"
+    },
+    {
+      "firstName": "Dhananjay",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1984-05-30",
+      "dod": "",
+      "address": "1207 Cypress CT",
+      "notes": "",
+      "personId": "p1757951447288",
+      "spouses": [
+        {
+          "spouseId": "p1757952248638",
+          "marriageDate": "2011-03-12",
+          "divorceDate": ""
+        }
+      ],
+      "motherId": "p1757954227228",
+      "fatherId": "p1"
+    },
+    {
+      "firstName": "Asha",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "dob": "1961-10-21",
+      "dod": "",
+      "address": "Ter",
+      "notes": "",
+      "personId": "p1757952082304",
+      "spouses": [
+        {
+          "spouseId": "p1757952216110",
+          "marriageDate": "1982-03-04",
+          "divorceDate": ""
+        }
+      ],
+      "motherId": "p1757968307056",
+      "fatherId": "p1757968351584"
+    },
+    {
+      "firstName": "Haripant ",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1951-09-01",
+      "dod": "",
+      "address": "Ter",
+      "notes": "Doctor",
+      "personId": "p1757952216110",
+      "spouses": [
+        {
+          "spouseId": "p1757952082304",
+          "marriageDate": "1982-03-04",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p1757956042650",
+      "motherId": "p1757966792265"
+    },
+    {
+      "firstName": "Rupali-Sample-example",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "dob": "1985-05-12",
+      "dod": "",
+      "address": "USA",
+      "notes": "",
+      "personId": "p1757952248638",
+      "spouses": [
+        {
+          "spouseId": "p1757951447288",
+          "marriageDate": "2011-03-12",
+          "divorceDate": ""
+        }
+      ],
+      "motherId": "p1757952082304",
+      "fatherId": "p1757952216110"
+    },
+    {
+      "firstName": "Jayant ",
+      "lastName": "kulkarni",
+      "gender": "male",
+      "dob": "1987-08-18",
+      "dod": "",
+      "address": "",
+      "notes": "",
+      "personId": "p1757953350984",
+      "spouses": [
+        {
+          "spouseId": "p1757957193924",
+          "marriageDate": "2019-12-24",
+          "divorceDate": ""
+        }
+      ],
+      "motherId": "p1757954227228",
+      "fatherId": "p1"
+    },
+    {
+      "firstName": "Chaya",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "dob": "1962-09-15",
+      "dod": "",
+      "address": "1207 Cypress CT",
+      "notes": "",
+      "personId": "p1757954227228",
+      "spouses": [
+        {
+          "spouseId": "p1",
+          "marriageDate": "1983-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p1759087679397",
+      "motherId": "p1759087805074"
+    },
+    {
+      "firstName": "Devidasrao",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1920-01-01",
+      "dod": "2010-01-01",
+      "address": "Ter",
+      "notes": "",
+      "personId": "p1757956042650",
+      "spouses": [],
+      "fatherId": "p1757967163504"
+    },
+    {
+      "firstName": "Rutuja",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "dob": "1987-11-19",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757957193924",
+      "spouses": [
+        {
+          "spouseId": "p1757953350984",
+          "marriageDate": "2019-12-24",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "firstName": "Bhargav",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "2022-03-14",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757957272928",
+      "spouses": [],
+      "motherId": "p1757957193924",
+      "fatherId": "p1757953350984"
+    },
+    {
+      "firstName": "Arohi",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "dob": "2011-11-19",
+      "dod": "",
+      "address": "USA",
+      "notes": "",
+      "personId": "p1757966228226",
+      "spouses": [],
+      "motherId": "p1757952248638",
+      "fatherId": "p1757951447288"
+    },
+    {
+      "firstName": "Ojas",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "2018-04-13",
+      "dod": "",
+      "address": "USA",
+      "notes": "",
+      "personId": "p1757966252146",
+      "spouses": [],
+      "motherId": "p1757952248638",
+      "fatherId": "p1757951447288"
+    },
+    {
+      "firstName": "Shilpa",
+      "lastName": "Joshi",
+      "gender": "female",
+      "dob": "1983-01-01",
+      "dod": "",
+      "address": "Hbad",
+      "notes": "",
+      "personId": "p1757966369531",
+      "spouses": [],
+      "motherId": "p1757952082304",
+      "fatherId": "p1757952216110"
+    },
+    {
+      "firstName": "Advait",
+      "lastName": "Joshi",
+      "gender": "male",
+      "dob": "2024-09-14",
+      "dod": "",
+      "address": "",
+      "notes": "",
+      "personId": "p1757966393270",
+      "spouses": [],
+      "motherId": "p1757966369531",
+      "fatherId": "p1759083397112"
+    },
+    {
+      "firstName": "Swapna",
+      "lastName": "Kashikar",
+      "gender": "female",
+      "dob": "1986-11-03",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757966442082",
+      "spouses": [
+        {
+          "spouseId": "p1757966493757",
+          "marriageDate": "2015-12-26",
+          "divorceDate": ""
+        }
+      ],
+      "motherId": "p1757952082304",
+      "fatherId": "p1757952216110"
+    },
+    {
+      "firstName": "Samit ",
+      "lastName": "Kashikar",
+      "gender": "male",
+      "dob": "2016-08-15",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757966468294",
+      "spouses": [],
+      "motherId": "p1757966442082",
+      "fatherId": "p1757966493757"
+    },
+    {
+      "firstName": "Prashant",
+      "lastName": "kashikar",
+      "gender": "male",
+      "dob": "1983-01-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757966493757",
+      "spouses": [
+        {
+          "spouseId": "p1757966442082",
+          "marriageDate": "2015-12-26",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "firstName": "Vithabai",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "dob": "1926-01-01",
+      "dod": "2023-01-01",
+      "address": "Ter",
+      "notes": "",
+      "personId": "p1757966792265",
+      "spouses": []
+    },
+    {
+      "firstName": "Lata",
+      "lastName": "Deshpande",
+      "gender": "female",
+      "dob": "1945-01-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757966821399",
+      "spouses": [],
+      "motherId": "p1757966792265",
+      "fatherId": "p1757956042650"
+    },
+    {
+      "firstName": "Yogesh",
+      "lastName": "Deshpande",
+      "gender": "male",
+      "dob": "1978-01-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757966848676",
+      "spouses": [],
+      "motherId": "p1757966821399"
+    },
+    {
+      "firstName": "Ayushi",
+      "lastName": "Deshpande",
+      "gender": "female",
+      "dob": "2007-01-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757966874573",
+      "spouses": [],
+      "fatherId": "p1757966848676"
+    },
+    {
+      "firstName": "Ashutosh",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1989-06-01",
+      "dod": "",
+      "address": "Hbad",
+      "notes": "",
+      "personId": "p1757967089481",
+      "spouses": [
+        {
+          "spouseId": "p1759145417185",
+          "marriageDate": "2018-05-05",
+          "divorceDate": ""
+        }
+      ],
+      "motherId": "p1757952082304",
+      "fatherId": "p1757952216110"
+    },
+    {
+      "firstName": "Abhidnya",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "2020-05-29",
+      "dod": "",
+      "address": "Hbad",
+      "notes": "",
+      "personId": "p1757967118680",
+      "spouses": [],
+      "fatherId": "p1757967089481",
+      "motherId": "p1759145417185"
+    },
+    {
+      "firstName": "Bhagvantrao",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1900-01-01",
+      "dod": "1980-01-01",
+      "address": "Ter",
+      "notes": "",
+      "personId": "p1757967163504",
+      "spouses": []
+    },
+    {
+      "firstName": "Lilabai",
+      "lastName": "Deshpande",
+      "gender": "female",
+      "dob": "1930-01-01",
+      "dod": "2016-01-01",
+      "address": "Pimpari",
+      "notes": "",
+      "personId": "p1757968307056",
+      "spouses": []
+    },
+    {
+      "firstName": "Bhujangrao",
+      "lastName": "Deshpande",
+      "gender": "male",
+      "dob": "1925-01-01",
+      "dod": "2010-01-01",
+      "address": "Pimpari",
+      "notes": "",
+      "personId": "p1757968351584",
+      "spouses": []
+    },
+    {
+      "firstName": "Prakash",
+      "lastName": "Deshpande",
+      "gender": "male",
+      "dob": "1955-01-01",
+      "dod": "",
+      "address": "Pimpari",
+      "notes": "",
+      "personId": "p1757968378418",
+      "spouses": [],
+      "motherId": "p1757968307056",
+      "fatherId": "p1757968351584"
+    },
+    {
+      "firstName": "Acchutrao",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1920-01-01",
+      "dod": "1978-01-01",
+      "address": "Kanerwadi",
+      "notes": "",
+      "personId": "p1757968516644",
+      "spouses": [],
+      "fatherId": "p1757968711043"
+    },
+    {
+      "firstName": "Dattatray",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1955-01-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757968568681",
+      "spouses": [
+        {
+          "spouseId": "p1757968681461",
+          "marriageDate": "1980-01-01",
+          "divorceDate": ""
+        }
+      ],
+      "fatherId": "p1757968516644"
+    },
+    {
+      "firstName": "Rahul",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1984-01-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757968599865",
+      "spouses": [],
+      "fatherId": "p1757968568681",
+      "motherId": "p1757968681461"
+    },
+    {
+      "firstName": "Rajesh",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1982-01-01",
+      "dod": "",
+      "address": "Delhi",
+      "notes": "Scientist",
+      "personId": "p1757968656520",
+      "spouses": [],
+      "motherId": "p1757968681461",
+      "fatherId": "p1757968568681"
+    },
+    {
+      "firstName": "Usha",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "dob": "1960-01-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757968681461",
+      "spouses": [
+        {
+          "spouseId": "p1757968568681",
+          "marriageDate": "1980-01-01",
+          "divorceDate": ""
+        }
+      ]
+    },
+    {
+      "firstName": "Shankarrao",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1900-01-01",
+      "dod": "1970-01-01",
+      "address": "Kanerwadi",
+      "notes": "",
+      "personId": "p1757968711043",
+      "spouses": [],
+      "fatherId": "p1757968766108"
+    },
+    {
+      "firstName": "Jivajirao",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "dob": "1875-01-01",
+      "dod": "1950-01-01",
+      "address": "Kanerwadi",
+      "notes": "",
+      "personId": "p1757968766108",
+      "spouses": []
+    },
+    {
+      "firstName": "Kalindi",
+      "lastName": "Sahotre",
+      "gender": "female",
+      "motherId": "p1757966792265",
+      "fatherId": "p1757956042650",
+      "dob": "1945-01-01",
+      "dod": "",
+      "address": "Ter",
+      "notes": "",
+      "personId": "p1757974900656",
+      "spouses": []
+    },
+    {
+      "firstName": "Nanda ",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "motherId": "p1757966792265",
+      "fatherId": "p1757956042650",
+      "dob": "1949-01-01",
+      "dod": "2015-01-01",
+      "address": "Latur",
+      "notes": "",
+      "personId": "p1757974971448",
+      "spouses": []
+    },
+    {
+      "firstName": "Prabha",
+      "lastName": "Inamdar",
+      "gender": "female",
+      "motherId": "p1757966792265",
+      "fatherId": "p1757956042650",
+      "dob": "1953-01-01",
+      "dod": "",
+      "address": "barshi",
+      "notes": "",
+      "personId": "p1757975024552",
+      "spouses": []
+    },
+    {
+      "firstName": "Rekha",
+      "lastName": "Nimbhorkar",
+      "gender": "female",
+      "motherId": "p1757966792265",
+      "fatherId": "p1757956042650",
+      "dob": "1955-01-01",
+      "dod": "",
+      "address": "Aurngabad",
+      "notes": "",
+      "personId": "p1757975061720",
+      "spouses": []
+    },
+    {
+      "firstName": "Geeta",
+      "lastName": "Alat",
+      "gender": "female",
+      "motherId": "p1757966792265",
+      "fatherId": "p1757956042650",
+      "dob": "1958-01-01",
+      "dod": "",
+      "address": "barshi",
+      "notes": "",
+      "personId": "p1757975100383",
+      "spouses": []
+    },
+    {
+      "firstName": "Mangala",
+      "lastName": "Joshi",
+      "gender": "female",
+      "motherId": "p1757968307056",
+      "fatherId": "p1757968351584",
+      "dob": "1950-09-27",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1757990961837",
+      "spouses": []
+    },
+    {
+      "firstName": "Asmita",
+      "lastName": "Joshi",
+      "gender": "female",
+      "motherId": "p1757990961837",
+      "fatherId": "",
+      "dob": "1975-02-01",
+      "dod": "",
+      "address": "Pune",
+      "notes": "",
+      "personId": "p1758026362818",
+      "spouses": []
+    },
+    {
+      "firstName": "tes01",
+      "lastName": "Kulkarni",
+      "gender": "male",
+      "motherId": "p1757966792265",
+      "fatherId": "p1757956042650",
+      "dob": "2025-07-02",
+      "dod": "",
+      "address": "",
+      "notes": "",
+      "personId": "p1759079940836",
+      "spouses": []
+    },
+    {
+      "firstName": "Hrishikeshh",
+      "lastName": "Joshi",
+      "gender": "male",
+      "motherId": "",
+      "fatherId": "",
+      "dob": "1981-09-11",
+      "dod": "",
+      "address": "",
+      "notes": "",
+      "personId": "p1759083397112",
+      "spouses": []
+    },
+    {
+      "firstName": "Prabhakar",
+      "lastName": "Kete",
+      "gender": "male",
+      "motherId": "",
+      "fatherId": "",
+      "dob": "1940-02-14",
+      "dod": "2011-10-11",
+      "address": "Beed",
+      "notes": "",
+      "personId": "p1759087679397",
+      "spouses": []
+    },
+    {
+      "firstName": "Sushila",
+      "lastName": "Kete",
+      "gender": "female",
+      "motherId": "",
+      "fatherId": "",
+      "dob": "1942-01-06",
+      "dod": "",
+      "address": "Beed",
+      "notes": "",
+      "personId": "p1759087805074",
+      "spouses": []
+    },
+    {
+      "firstName": "Tanaya",
+      "lastName": "Kulkarni",
+      "gender": "female",
+      "motherId": "",
+      "fatherId": "",
+      "dob": "1989-05-19",
+      "dod": "",
+      "address": "Hydrabad",
+      "notes": "",
+      "personId": "p1759145417185",
+      "spouses": [
+        {
+          "spouseId": "p1757967089481",
+          "marriageDate": "2018-05-05",
+          "divorceDate": ""
+        }
+      ]
+    }
+  ]
+}

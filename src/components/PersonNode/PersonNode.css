@@ -1,0 +1,201 @@
+.person-node {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  user-select: none;
+}
+
+.person-node:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.person-node.selected {
+  box-shadow: 0 0 0 3px var(--primary-color), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 0 !important;
+}
+
+/* Main person highlight with bold text */
+.person-node.main-person {
+  box-shadow: 0 0 0 4px #f39c12, 0 4px 16px rgba(243, 156, 18, 0.4);
+}
+
+.person-node.main-person .person-name {
+  font-weight: 700;
+}
+
+.person-node.main-person.selected {
+  box-shadow: 0 0 0 4px #f39c12, 0 0 0 7px var(--primary-color), 0 4px 16px rgba(243, 156, 18, 0.4);
+}
+
+/* Sibling styling - grayed out */
+.person-node.sibling {
+  opacity: 0.6;
+  border-style: dashed;
+}
+
+.person-node.sibling:hover {
+  opacity: 0.9;
+}
+
+/* Cousin styling - dotted border, different opacity */
+.person-node.cousin {
+  opacity: 0.5;
+  border-style: dotted;
+  border-width: 2px;
+}
+
+.person-node.cousin:hover {
+  opacity: 0.8;
+}
+
+/* Spouse adjacent - rounded on outer edges only */
+.person-node.has-spouse-right {
+  border-radius: 8px 0 0 8px;
+}
+
+.person-node.spouse-position {
+  border-radius: 0 8px 8px 0;
+}
+
+.person-node.male {
+  background: var(--male-color);
+  border: 2px solid #6ba3d9;
+}
+
+.person-node.female {
+  background: var(--female-color);
+  border: 2px solid #d98ba3;
+}
+
+.person-name {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: #222;
+  padding: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Bold for blood relatives */
+.person-node.blood-relative .person-name {
+  font-weight: 600;
+}
+
+.person-name.bold {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+
+
+.person-lastname {
+  font-size: 11px;
+  color: #444;
+  text-align: center;
+  padding: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+
+
+/* Non-blood relative styling */
+.person-node.non-blood {
+  opacity: 0.5;
+}
+
+.person-node.non-blood .person-name {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.person-node.non-blood .person-lastname {
+  font-size: 10px;
+}
+
+/* Deceased person styling */
+.person-node.deceased {
+  background: linear-gradient(135deg, #e0e0e0 0%, #c8c8c8 100%);
+  border-color: #999;
+  opacity: 0.75;
+}
+
+.person-node.deceased.male {
+  background: linear-gradient(135deg, #b8c8d8 0%, #9ab0c4 100%);
+  border-color: #7a9ab8;
+}
+
+.person-node.deceased.female {
+  background: linear-gradient(135deg, #d8b8c8 0%, #c49aaa 100%);
+  border-color: #b87a90;
+}
+
+.person-node.deceased .person-name,
+.person-node.deceased .person-lastname {
+  color: #555;
+}
+
+.person-node.deceased:hover {
+  opacity: 0.9;
+}
+
+.deceased-marker {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.main-marker {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 12px;
+  color: #f39c12;
+}
+
+.age-tooltip {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 100;
+}
+
+.person-node:hover .age-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hovered state in full tree mode */
+.person-node.hovered {
+  box-shadow: 0 0 0 3px #e74c3c, 0 4px 16px rgba(231, 76, 60, 0.4);
+  transform: scale(1.08);
+  z-index: 20;
+}

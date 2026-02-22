@@ -1,0 +1,49 @@
+.tree-slider {
+  max-width: 320px;
+}
+
+.tree-slider .slider-actions {
+  justify-content: flex-end;
+}
+
+.tree-slider .btn-save,
+.tree-slider .btn-cancel {
+  padding: 6px 14px;
+  font-size: 12px;
+}
+
+.tree-slider .btn-cancel {
+  border: 1px solid #ddd;
+}
+
+.visibility-options {
+  display: flex;
+  gap: 6px;
+}
+
+.visibility-btn {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.visibility-btn:hover {
+  background: #f0f0f0;
+}
+
+.visibility-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.visibility-hint {
+  font-size: 11px;
+  color: #888;
+  margin: 8px 0 0 0;
+}
