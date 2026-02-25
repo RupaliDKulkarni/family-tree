@@ -375,7 +375,10 @@ function App() {
         showSiblings={showSiblings}
         onToggleSiblings={() => setShowSiblings(prev => !prev)}
         showCousins={showCousins}
-        onToggleCousins={() => setShowCousins(prev => !prev)}
+        onToggleCousins={() => setShowCousins(prev => {
+          if (!prev) setShowSiblings(true);
+          return !prev;
+        })}
         showFullTree={showFullTree}
         onToggleFullTree={() => setShowFullTree(prev => !prev)}
       />

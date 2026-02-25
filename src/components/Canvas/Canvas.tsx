@@ -1119,20 +1119,26 @@ const Canvas: React.FC<CanvasProps> = ({
     return elements;
   };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handlePointerDown = (e: React.PointerEvent) => {
     if (e.target === canvasRef.current || (e.target as HTMLElement).classList.contains('canvas-content')) {
       setIsPanning(true);
       setStartPan({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+      (e.target as HTMLElement).setPointerCapture(e.pointerId);
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent) => {
     if (isPanning) {
       setPan({ x: e.clientX - startPan.x, y: e.clientY - startPan.y });
     }
   };
 
-  const handleMouseUp = () => setIsPanning(false);
+  const handlePointerUp = (e: React.PointerEvent) => {
+    setIsPanning(false);
+    if (canvasRef.current?.hasPointerCapture(e.pointerId)) {
+      canvasRef.current.releasePointerCapture(e.pointerId);
+    }
+  };
 
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault();
@@ -1252,10 +1258,9 @@ const Canvas: React.FC<CanvasProps> = ({
     <div
       ref={canvasRef}
       className="canvas"
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
       onWheel={handleWheel}
     >
       {isLoading && (
