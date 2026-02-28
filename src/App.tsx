@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { FamilyTree, Person } from './types';
 import Sidebar from './components/Sidebar/Sidebar';
 import Canvas from './components/Canvas/Canvas';
@@ -32,9 +32,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const [showSiblings, setShowSiblings] = useState(true);
+  const [showSiblings, setShowSiblings] = useState(false);
   const [showCousins, setShowCousins] = useState(false);
   const [showFullTree, setShowFullTree] = useState(false);
+  const closeMobilePanelRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     loadPublicTreesIfNeeded();
@@ -421,6 +422,7 @@ function App() {
         onDeleteTree={handleDeleteTree}
         onUpdateTree={handleUpdateTree}
         onSetMainPerson={handleSetMainPerson}
+        closeMobilePanelRef={closeMobilePanelRef}
       />
 
       <Canvas
@@ -447,6 +449,7 @@ function App() {
         })}
         showFullTree={showFullTree}
         onToggleFullTree={() => setShowFullTree(prev => !prev)}
+        closeMobilePanelRef={closeMobilePanelRef}
       />
 
       <PersonSlider

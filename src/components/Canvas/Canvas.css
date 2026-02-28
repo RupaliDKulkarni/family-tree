@@ -384,3 +384,150 @@
   overflow: visible;
   z-index: 1;
 }
+
+/* ===== Mobile Canvas ===== */
+@media (max-width: 768px) {
+  .canvas {
+    touch-action: none;
+  }
+
+  /* Compact ribbon */
+  .canvas-ribbon {
+    height: 40px;
+    padding: 0 6px;
+    gap: 2px;
+    overflow: hidden;
+  }
+
+  .ribbon-label {
+    display: none;
+  }
+
+  .ribbon-section {
+    padding: 2px 4px;
+  }
+
+  .ribbon-btn {
+    height: 26px;
+    padding: 0 6px;
+    font-size: 11px;
+  }
+
+  .ribbon-btn.toggle {
+    min-width: auto;
+    padding: 0 6px;
+  }
+
+  .ribbon-divider {
+    height: 24px;
+    margin: 0 4px;
+  }
+
+  .ribbon-info {
+    gap: 6px;
+  }
+
+  .tree-title {
+    font-size: 12px;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .main-person-badge,
+  .full-tree-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .zoom-display {
+    font-size: 10px;
+    min-width: 30px;
+  }
+
+  /* Hide non-essential ribbon items on mobile */
+  .ribbon-section-overflow {
+    display: none;
+  }
+
+  .ribbon-overflow-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Overflow dropdown */
+  .ribbon-overflow-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 160px;
+  }
+
+  .ribbon-overflow-menu .ribbon-btn {
+    width: 100%;
+    text-align: left;
+    height: 32px;
+  }
+
+  .canvas-content {
+    top: 46px;
+    height: calc(100% - 46px);
+  }
+
+  /* Floating toolbar compact */
+  .floating-toolbar {
+    bottom: 70px;
+    padding: 8px 10px;
+    gap: 8px;
+    max-width: calc(100vw - 20px);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .selected-person-info {
+    padding-right: 8px;
+    gap: 4px;
+  }
+
+  .selected-name {
+    font-size: 13px;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .toolbar-btn {
+    height: 28px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+
+  /* Empty state */
+  .empty-message {
+    padding: 24px;
+    margin: 16px;
+  }
+}
+
+/* Hide overflow toggle on desktop */
+@media (min-width: 769px) {
+  .ribbon-overflow-toggle {
+    display: none;
+  }
+
+  .ribbon-overflow-menu {
+    display: none;
+  }
+}

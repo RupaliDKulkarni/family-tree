@@ -109,3 +109,10 @@
 .btn-confirm:hover {
   background: #d63527;
 }
+
+@media (max-width: 768px) {
+  .confirm-modal {
+    width: 90vw;
+    max-width: 320px;
+  }
+}

@@ -4,3 +4,9 @@
   width: 100vw;
   overflow: hidden;
 }
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+}

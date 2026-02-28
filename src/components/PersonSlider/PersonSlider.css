@@ -267,3 +267,31 @@ textarea {
 .btn-delete-spouse:hover {
   background: #c0392b;
 }
+
+@media (max-width: 768px) {
+  .slider-panel {
+    width: 100vw;
+  }
+
+  .slider-form {
+    padding: 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .spouse-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .spouse-item-info {
+    margin-right: 0;
+  }
+
+  .spouse-item-actions {
+    align-self: flex-end;
+  }
+}

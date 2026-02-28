@@ -24,6 +24,7 @@ interface CanvasProps {
   onToggleCousins: () => void;
   showFullTree: boolean;
   onToggleFullTree: () => void;
+  closeMobilePanelRef?: React.MutableRefObject<(() => void) | null>;
 }
 
 interface NodeLayout {
@@ -69,7 +70,8 @@ const Canvas: React.FC<CanvasProps> = ({
   showCousins,
   onToggleCousins,
   showFullTree,
-  onToggleFullTree
+  onToggleFullTree,
+  closeMobilePanelRef
 }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -77,6 +79,18 @@ const Canvas: React.FC<CanvasProps> = ({
   const [isPanning, setIsPanning] = useState(false);
   const [startPan, setStartPan] = useState({ x: 0, y: 0 });
   const [hoveredPersonId, setHoveredPersonId] = useState<string | null>(null);
+  const [showOverflowMenu, setShowOverflowMenu] = useState(false);
+  const [tappedPersonId, setTappedPersonId] = useState<string | null>(null);
+  const lastTouchDist = useRef<number | null>(null);
+  const lastTouchCenter = useRef<{ x: number; y: number } | null>(null);
+  const activeTouchCount = useRef(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
 
   const personMap = useMemo(() => {
     const map = new Map<string, Person>();
@@ -956,7 +970,8 @@ const Canvas: React.FC<CanvasProps> = ({
 
   // Render animated lineage lines on hover in full tree mode
   const renderHoverLineage = () => {
-    if (!showFullTree || !hoveredPersonId || !tree) return null;
+    const activeHoverId = isMobile ? tappedPersonId : hoveredPersonId;
+    if (!showFullTree || !activeHoverId || !tree) return null;
 
     const elements: JSX.Element[] = [];
     const getNodePos = (personId: string) => positionMap.get(personId);
@@ -1048,8 +1063,8 @@ const Canvas: React.FC<CanvasProps> = ({
       });
     };
 
-    collectAncestors(hoveredPersonId, 0, new Set());
-    collectDescendants(hoveredPersonId, 0, new Set());
+    collectAncestors(activeHoverId, 0, new Set());
+    collectDescendants(activeHoverId, 0, new Set());
 
     // Sort connections by level
     const upConnections = connections.filter(c => c.direction === 'up').sort((a, b) => a.level - b.level);
@@ -1120,7 +1135,13 @@ const Canvas: React.FC<CanvasProps> = ({
   };
 
   const handlePointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') {
+      activeTouchCount.current++;
+      if (activeTouchCount.current > 1) return;
+    }
     if (e.target === canvasRef.current || (e.target as HTMLElement).classList.contains('canvas-content')) {
+      closeMobilePanelRef?.current?.();
+      setShowOverflowMenu(false);
       setIsPanning(true);
       setStartPan({ x: e.clientX - pan.x, y: e.clientY - pan.y });
       (e.target as HTMLElement).setPointerCapture(e.pointerId);
@@ -1128,12 +1149,15 @@ const Canvas: React.FC<CanvasProps> = ({
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
-    if (isPanning) {
+    if (isPanning && activeTouchCount.current < 2) {
       setPan({ x: e.clientX - startPan.x, y: e.clientY - startPan.y });
     }
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') {
+      activeTouchCount.current = Math.max(0, activeTouchCount.current - 1);
+    }
     setIsPanning(false);
     if (canvasRef.current?.hasPointerCapture(e.pointerId)) {
       canvasRef.current.releasePointerCapture(e.pointerId);
@@ -1144,6 +1168,50 @@ const Canvas: React.FC<CanvasProps> = ({
     e.preventDefault();
     const delta = e.deltaY > 0 ? 0.9 : 1.1;
     setZoom(z => Math.min(Math.max(0.3, z * delta), 2));
+  };
+
+  const getTouchDist = (t1: React.Touch, t2: React.Touch) =>
+    Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      setIsPanning(false);
+      lastTouchDist.current = getTouchDist(e.touches[0], e.touches[1]);
+      lastTouchCenter.current = {
+        x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+        y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+      };
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 2 && lastTouchDist.current !== null) {
+      e.preventDefault();
+      const newDist = getTouchDist(e.touches[0], e.touches[1]);
+      const scale = newDist / lastTouchDist.current;
+      setZoom(z => Math.min(Math.max(0.3, z * scale), 2));
+      lastTouchDist.current = newDist;
+
+      if (lastTouchCenter.current) {
+        const newCenter = {
+          x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+          y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+        };
+        setPan(p => ({
+          x: p.x + (newCenter.x - lastTouchCenter.current!.x),
+          y: p.y + (newCenter.y - lastTouchCenter.current!.y)
+        }));
+        lastTouchCenter.current = newCenter;
+      }
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (e.touches.length < 2) {
+      lastTouchDist.current = null;
+      lastTouchCenter.current = null;
+    }
   };
 
   useEffect(() => {
@@ -1179,10 +1247,13 @@ const Canvas: React.FC<CanvasProps> = ({
   }, [onNavigateBack, onNavigateForward]);
 
   const handleNodeClick = useCallback((personId: string) => {
+    if (isMobile && showFullTree) {
+      setTappedPersonId(prev => prev === personId ? null : personId);
+      return;
+    }
     onSelectPerson(personId);
     onSetMainPerson(personId);
-    // Note: onSetMainPerson in App.tsx handles exiting full tree mode
-  }, [onSelectPerson, onSetMainPerson]);
+  }, [onSelectPerson, onSetMainPerson, isMobile, showFullTree]);
 
   const handleEditSelected = useCallback(() => {
     if (selectedPersonId) {
@@ -1262,6 +1333,9 @@ const Canvas: React.FC<CanvasProps> = ({
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onWheel={handleWheel}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       {isLoading && (
         <div className="loading-overlay">
@@ -1280,16 +1354,18 @@ const Canvas: React.FC<CanvasProps> = ({
               disabled={historyIndex <= 0}
               title="Go back (←)"
             >
-              ← Back
+              {isMobile ? '←' : '← Back'}
             </button>
-            <button 
-              className="ribbon-btn" 
-              onClick={onNavigateForward} 
-              disabled={historyIndex >= history.length - 1}
-              title="Go forward (→)"
-            >
-              Forward →
-            </button>
+            {!isMobile && (
+              <button 
+                className="ribbon-btn" 
+                onClick={onNavigateForward} 
+                disabled={historyIndex >= history.length - 1}
+                title="Go forward (→)"
+              >
+                Forward →
+              </button>
+            )}
           </div>
         </div>
 
@@ -1303,7 +1379,7 @@ const Canvas: React.FC<CanvasProps> = ({
               onClick={onToggleFullTree}
               title="Show Full Tree (all members)"
             >
-              🌳 Full Tree
+              {isMobile ? '🌳' : '🌳 Full Tree'}
             </button>
             <button 
               className={`ribbon-btn toggle ${showSiblings ? 'active' : 'inactive'}`}
@@ -1311,43 +1387,76 @@ const Canvas: React.FC<CanvasProps> = ({
               disabled={showFullTree}
               title="Show/Hide Siblings"
             >
-              👥 Siblings
+              {isMobile ? '👥' : '👥 Siblings'}
             </button>
-            <button 
-              className={`ribbon-btn toggle ${showCousins ? 'active' : 'inactive'}`}
-              onClick={onToggleCousins}
-              disabled={showFullTree}
-              title="Show/Hide Cousins"
-            >
-              👨‍👩‍👧‍👦 Cousins
-            </button>
+            {!isMobile && (
+              <button 
+                className={`ribbon-btn toggle ${showCousins ? 'active' : 'inactive'}`}
+                onClick={onToggleCousins}
+                disabled={showFullTree}
+                title="Show/Hide Cousins"
+              >
+                👨‍👩‍👧‍👦 Cousins
+              </button>
+            )}
           </div>
         </div>
 
         <div className="ribbon-divider" />
 
-        <div className="ribbon-section">
-          <span className="ribbon-label">Zoom</span>
-          <div className="ribbon-buttons">
-            <button className="ribbon-btn" onClick={() => setZoom(z => Math.max(z * 0.8, 0.3))}>−</button>
-            <span className="zoom-display">{Math.round(zoom * 100)}%</span>
-            <button className="ribbon-btn" onClick={() => setZoom(z => Math.min(z * 1.2, 2))}>+</button>
-            <button className="ribbon-btn" onClick={() => { setZoom(1); if(canvasRef.current) { const rect = canvasRef.current.getBoundingClientRect(); setPan({ x: rect.width / 2, y: 150 }); } }}>Reset</button>
-          </div>
-        </div>
+        {!isMobile && (
+          <>
+            <div className="ribbon-section">
+              <span className="ribbon-label">Zoom</span>
+              <div className="ribbon-buttons">
+                <button className="ribbon-btn" onClick={() => setZoom(z => Math.max(z * 0.8, 0.3))}>−</button>
+                <span className="zoom-display">{Math.round(zoom * 100)}%</span>
+                <button className="ribbon-btn" onClick={() => setZoom(z => Math.min(z * 1.2, 2))}>+</button>
+                <button className="ribbon-btn" onClick={() => { setZoom(1); if(canvasRef.current) { const rect = canvasRef.current.getBoundingClientRect(); setPan({ x: rect.width / 2, y: 150 }); } }}>Reset</button>
+              </div>
+            </div>
 
-        <div className="ribbon-divider" />
+            <div className="ribbon-divider" />
+          </>
+        )}
 
         <div className="ribbon-section">
           <span className="ribbon-label">Actions</span>
           <div className="ribbon-buttons">
             <button className="ribbon-btn primary" onClick={() => onAddPerson()}>
-              + Add Person
+              {isMobile ? '+' : '+ Add Person'}
             </button>
           </div>
         </div>
 
-        <div className="ribbon-spacer" />
+        {isMobile && (
+          <>
+            <div className="ribbon-spacer" />
+            <button
+              className="ribbon-btn ribbon-overflow-toggle"
+              onClick={() => setShowOverflowMenu(prev => !prev)}
+              title="More options"
+            >
+              ⋯
+            </button>
+            {showOverflowMenu && (
+              <div className="ribbon-overflow-menu">
+                <button 
+                  className={`ribbon-btn toggle ${showCousins ? 'active' : 'inactive'}`}
+                  onClick={() => { onToggleCousins(); setShowOverflowMenu(false); }}
+                  disabled={showFullTree}
+                >
+                  👨‍👩‍👧‍👦 Cousins
+                </button>
+                <button className="ribbon-btn" onClick={() => { setZoom(1); if(canvasRef.current) { const rect = canvasRef.current.getBoundingClientRect(); setPan({ x: rect.width / 2, y: 150 }); } setShowOverflowMenu(false); }}>
+                  Reset Zoom
+                </button>
+              </div>
+            )}
+          </>
+        )}
+
+        {!isMobile && <div className="ribbon-spacer" />}
 
         <div className="ribbon-info">
           <span className="tree-title">{tree.treeName}</span>
@@ -1401,8 +1510,8 @@ const Canvas: React.FC<CanvasProps> = ({
               isCousin={!showFullTree && layout.isCousin}
               hasSpouseAdjacent={(layout.spouses?.length || 0) > 0}
               onSelect={() => handleNodeClick(layout.person.personId)}
-              onHover={showFullTree ? setHoveredPersonId : undefined}
-              isHovered={showFullTree && hoveredPersonId === layout.person.personId}
+              onHover={showFullTree && !isMobile ? setHoveredPersonId : undefined}
+              isHovered={showFullTree && (isMobile ? tappedPersonId === layout.person.personId : hoveredPersonId === layout.person.personId)}
             />
             {layout.spouses?.map((spouse, idx) => (
               <PersonNode
@@ -1419,8 +1528,8 @@ const Canvas: React.FC<CanvasProps> = ({
                 hasSpouseAdjacent={idx < (layout.spouses?.length || 1) - 1}
                 isSpousePosition={true}
                 onSelect={() => handleNodeClick(spouse.personId)}
-                onHover={showFullTree ? setHoveredPersonId : undefined}
-                isHovered={showFullTree && hoveredPersonId === spouse.personId}
+                onHover={showFullTree && !isMobile ? setHoveredPersonId : undefined}
+                isHovered={showFullTree && (isMobile ? tappedPersonId === spouse.personId : hoveredPersonId === spouse.personId)}
               />
             ))}
           </React.Fragment>
