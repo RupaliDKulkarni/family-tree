@@ -280,10 +280,15 @@ function App() {
             );
           }
         } else if (context.relation === 'spouse' && parent) {
-          person.spouses = [{ spouseId: context.parentId, marriageDate: '', divorceDate: '' }];
+          // person.spouses already has dates set by PersonSlider
+          if (!person.spouses.length) {
+            person.spouses = [{ spouseId: context.parentId, marriageDate: '', divorceDate: '' }];
+          }
+          const mDate = person.spouses[0]?.marriageDate || '';
+          const dDate = person.spouses[0]?.divorceDate || '';
           updatedTree.treeData = updatedTree.treeData.map(p => 
             p.personId === context.parentId 
-              ? { ...p, spouses: [...p.spouses, { spouseId: person.personId, marriageDate: '', divorceDate: '' }] }
+              ? { ...p, spouses: [...p.spouses, { spouseId: person.personId, marriageDate: mDate, divorceDate: dDate }] }
               : p
           );
         }
@@ -333,6 +338,67 @@ function App() {
       }
     }
   };
+
+  const handleUpdateSpouseDates = useCallback((personId: string, spouseId: string, marriageDate: string, divorceDate: string) => {
+    if (!currentTree) return;
+    const updatedTree = { ...currentTree };
+    updatedTree.treeData = updatedTree.treeData.map(p => {
+      if (p.personId === personId) {
+        return { ...p, spouses: p.spouses.map(s =>
+          s.spouseId === spouseId ? { ...s, marriageDate, divorceDate } : s
+        )};
+      }
+      if (p.personId === spouseId) {
+        return { ...p, spouses: p.spouses.map(s =>
+          s.spouseId === personId ? { ...s, marriageDate, divorceDate } : s
+        )};
+      }
+      return p;
+    });
+    updatedTree.modifyDate = new Date().toISOString();
+    saveTree(updatedTree);
+    setCurrentTree(updatedTree);
+  }, [currentTree]);
+
+  const handleDeleteSpouse = useCallback((personId: string, spouseId: string) => {
+    if (!currentTree) return;
+    const updatedTree = { ...currentTree };
+    updatedTree.treeData = updatedTree.treeData.map(p => {
+      if (p.personId === personId) {
+        return { ...p, spouses: p.spouses.filter(s => s.spouseId !== spouseId) };
+      }
+      if (p.personId === spouseId) {
+        return { ...p, spouses: p.spouses.filter(s => s.spouseId !== personId) };
+      }
+      return p;
+    });
+    updatedTree.modifyDate = new Date().toISOString();
+    saveTree(updatedTree);
+    setCurrentTree(updatedTree);
+  }, [currentTree]);
+
+  const handleLinkExistingSpouse = useCallback((existingSpouseId: string, ofPersonId: string, marriageDate: string, divorceDate: string) => {
+    if (!currentTree) return;
+    const updatedTree = { ...currentTree };
+    updatedTree.treeData = updatedTree.treeData.map(p => {
+      if (p.personId === ofPersonId) {
+        const alreadySpouse = p.spouses.some(s => s.spouseId === existingSpouseId);
+        if (!alreadySpouse) {
+          return { ...p, spouses: [...p.spouses, { spouseId: existingSpouseId, marriageDate, divorceDate }] };
+        }
+      }
+      if (p.personId === existingSpouseId) {
+        const alreadySpouse = p.spouses.some(s => s.spouseId === ofPersonId);
+        if (!alreadySpouse) {
+          return { ...p, spouses: [...p.spouses, { spouseId: ofPersonId, marriageDate, divorceDate }] };
+        }
+      }
+      return p;
+    });
+    updatedTree.modifyDate = new Date().toISOString();
+    saveTree(updatedTree);
+    setCurrentTree(updatedTree);
+  }, [currentTree]);
 
   const handleSetDefaultPerson = useCallback((personId: string) => {
     if (!currentTree) return;
@@ -391,6 +457,9 @@ function App() {
         relationContext={relationContext}
         onSave={handleSavePerson}
         onDelete={handleDeletePerson}
+        onLinkExistingSpouse={handleLinkExistingSpouse}
+        onUpdateSpouseDates={handleUpdateSpouseDates}
+        onDeleteSpouse={handleDeleteSpouse}
       />
 
       <NewTreeModal
