@@ -1,27 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { TreeListItem, FamilyTree, Person } from '../../types';
+import { useNavigate } from 'react-router-dom';
+import { FamilyTree, Person } from '../../types';
+import { useTree } from '../../hooks/useTree';
+import { useNavigation } from '../../hooks/useNavigation';
+import { useUI } from '../../hooks/useUI';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import TreeSlider from '../TreeSlider/TreeSlider';
 import './Sidebar.css';
-
-interface ExtendedTreeListItem extends TreeListItem {
-  isPublic?: boolean;
-}
-
-interface SidebarProps {
-  trees: ExtendedTreeListItem[];
-  currentTreeId: string | null;
-  currentTree: FamilyTree | null;
-  mainPersonId: string | null;
-  onSelectTree: (treeId: string) => void;
-  onNewTree: () => void;
-  onImportTree: (tree: FamilyTree) => void;
-  onDownloadTree: () => void;
-  onDeleteTree: (treeId: string) => void;
-  closeMobilePanelRef?: React.MutableRefObject<(() => void) | null>;
-  onUpdateTree: (treeId: string, newName: string, isPublic: boolean) => void;
-  onSetMainPerson: (personId: string) => void;
-}
 
 const MEMBERS_PER_PAGE = 10;
 
@@ -35,20 +20,12 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({
-  trees,
-  currentTreeId,
-  currentTree,
-  mainPersonId,
-  onSelectTree,
-  onNewTree,
-  onImportTree,
-  onDownloadTree,
-  onDeleteTree,
-  onUpdateTree,
-  onSetMainPerson,
-  closeMobilePanelRef
-}) => {
+const Sidebar: React.FC = () => {
+  const { trees, currentTree, importTree, downloadCurrentTree, deleteTree, updateTree } = useTree();
+  const { mainPersonId, setMainPerson } = useNavigation();
+  const { openNewTreeModal, closeMobilePanelRef } = useUI();
+  const navigate = useNavigate();
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [memberPage, setMemberPage] = useState(0);
   const [activeTab, setActiveTab] = useState<'my' | 'public'>('my');
@@ -57,11 +34,17 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [mobilePanel, setMobilePanel] = useState<'none' | 'trees' | 'members'>('none');
   const isMobile = useIsMobile();
 
+  const currentTreeId = currentTree?.treeId || null;
+
   React.useEffect(() => {
     if (closeMobilePanelRef) {
       closeMobilePanelRef.current = () => setMobilePanel('none');
     }
   }, [closeMobilePanelRef]);
+
+  const handleSelectTree = (treeId: string) => {
+    navigate(`/tree/${treeId}`);
+  };
 
   const handleImportClick = () => {
     fileInputRef.current?.click();
@@ -75,8 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     reader.onload = (event) => {
       try {
         const tree = JSON.parse(event.target?.result as string) as FamilyTree;
-        onImportTree(tree);
-        // Switch to public tab if importing a public tree while on my trees tab
+        importTree(tree);
         if (tree.isPublic && activeTab === 'my') {
           setActiveTab('public');
         }
@@ -88,7 +70,6 @@ const Sidebar: React.FC<SidebarProps> = ({
     e.target.value = '';
   };
 
-  // Get members for current page
   const members = currentTree?.treeData || [];
   const totalPages = Math.ceil(members.length / MEMBERS_PER_PAGE);
   const paginatedMembers = members.slice(
@@ -96,12 +77,10 @@ const Sidebar: React.FC<SidebarProps> = ({
     (memberPage + 1) * MEMBERS_PER_PAGE
   );
 
-  // Reset page when tree changes
   React.useEffect(() => {
     setMemberPage(0);
   }, [currentTreeId]);
 
-  // Separate trees into public and private (my trees)
   const myTrees = trees.filter(t => !t.isPublic);
   const publicTrees = trees.filter(t => t.isPublic);
   const displayedTrees = activeTab === 'my' ? myTrees : publicTrees;
@@ -125,7 +104,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       </div>
       
       <div className="sidebar-actions">
-        <button className="btn-new" onClick={onNewTree}>+ New Tree</button>
+        <button className="btn-new" onClick={openNewTreeModal}>+ New Tree</button>
         <button className="btn-import" onClick={handleImportClick}>Import Tree</button>
         <button className="btn-open-file" onClick={async () => {
           try {
@@ -140,8 +119,8 @@ const Sidebar: React.FC<SidebarProps> = ({
             const file = await fileHandle.getFile();
             const contents = await file.text();
             const tree = JSON.parse(contents) as FamilyTree;
-            tree.fileHandle = fileHandle; // Attach handle for auto-saving
-            onImportTree(tree);
+            tree.fileHandle = fileHandle;
+            importTree(tree);
           } catch (err) {
             console.error(err);
           }
@@ -182,7 +161,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <div
               key={tree.treeId}
               className={`tree-item ${currentTreeId === tree.treeId ? 'active' : ''}`}
-              onClick={() => onSelectTree(tree.treeId)}
+              onClick={() => handleSelectTree(tree.treeId)}
             >
               <span className="tree-icon">{tree.isPublic ? '🌐' : '🏠'}</span>
               <span className="tree-name" title={tree.treeName}>
@@ -204,7 +183,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     className="btn-download"
                     onClick={(e) => {
                       e.stopPropagation();
-                      onDownloadTree();
+                      downloadCurrentTree();
                     }}
                     title="Download JSON"
                   >
@@ -227,7 +206,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         )}
       </div>
 
-      {/* Members List Section */}
       {currentTree && currentTree.treeData.length > 0 && (
         <div className="members-section">
           <div className="members-header">
@@ -239,7 +217,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               <div
                 key={person.personId}
                 className={`member-item ${mainPersonId === person.personId ? 'active' : ''}`}
-                onClick={() => onSetMainPerson(person.personId)}
+                onClick={() => setMainPerson(person.personId)}
               >
                 <span className={`member-gender ${person.gender}`}>
                   {person.gender === 'male' ? '♂' : '♀'}
@@ -282,7 +260,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         cancelText="Cancel"
         onConfirm={() => {
           if (deleteConfirm) {
-            onDeleteTree(deleteConfirm.treeId);
+            deleteTree(deleteConfirm.treeId);
             setDeleteConfirm(null);
           }
         }}
@@ -296,7 +274,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         isPublic={editingTree?.isPublic || false}
         onSave={(name, isPublic) => {
           if (editingTree) {
-            onUpdateTree(editingTree.treeId, name, isPublic);
+            updateTree(editingTree.treeId, name, isPublic);
             if (isPublic && activeTab === 'my') {
               setActiveTab('public');
             } else if (!isPublic && activeTab === 'public') {
@@ -322,7 +300,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <span className="tab-icon">👤</span>
             <span className="tab-label">Members</span>
           </button>
-          <button className="mobile-tab-btn" onClick={onNewTree}>
+          <button className="mobile-tab-btn" onClick={openNewTreeModal}>
             <span className="tab-icon">＋</span>
             <span className="tab-label">New</span>
           </button>
@@ -343,8 +321,8 @@ const Sidebar: React.FC<SidebarProps> = ({
               const file = await fileHandle.getFile();
               const contents = await file.text();
               const tree = JSON.parse(contents) as FamilyTree;
-              tree.fileHandle = fileHandle; // Attach handle for auto-saving
-              onImportTree(tree);
+              tree.fileHandle = fileHandle;
+              importTree(tree);
             } catch (err) {
               console.error(err);
             }
@@ -353,7 +331,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <span className="tab-label">Open</span>
           </button>
           {currentTree && (
-            <button className="mobile-tab-btn" onClick={onDownloadTree}>
+            <button className="mobile-tab-btn" onClick={downloadCurrentTree}>
               <span className="tab-icon">📤</span>
               <span className="tab-label">Export</span>
             </button>

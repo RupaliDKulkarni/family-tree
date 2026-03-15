@@ -1,0 +1,115 @@
+.sync-conflict-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.sync-conflict-modal {
+  background: white;
+  border-radius: 12px;
+  width: 90vw;
+  max-width: 420px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.sync-conflict-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.sync-conflict-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.sync-conflict-body {
+  padding: 16px 20px;
+}
+
+.sync-conflict-treename {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 8px;
+  color: #222;
+}
+
+.sync-conflict-desc {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.sync-conflict-versions {
+  display: flex;
+  gap: 12px;
+}
+
+.sync-version {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sync-version.local {
+  background: #f0f7ff;
+  border: 1px solid #c5ddf5;
+}
+
+.sync-version.cloud {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.sync-version-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.sync-version-date {
+  font-size: 13px;
+  color: #333;
+}
+
+.sync-conflict-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid #eee;
+}
+
+.sync-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.sync-btn:hover {
+  opacity: 0.85;
+}
+
+.sync-btn.keep-local {
+  background: #4a90d9;
+  color: white;
+}
+
+.sync-btn.keep-cloud {
+  background: #22c55e;
+  color: white;
+}

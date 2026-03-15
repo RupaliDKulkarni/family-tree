@@ -1,93 +1,77 @@
 import { FamilyTree, TreeListItem } from '../types';
+import { indexedDBProvider } from '../services/IndexedDBProvider';
 import { getPublicTrees } from '../savedtrees';
 
-const TREES_KEY = 'familyTrees';
-const CURRENT_TREE_KEY = 'currentTreeId';
-const PUBLIC_TREES_LOADED_KEY = 'publicTreesLoaded';
+const MAIN_PERSON_KEY = 'mainPersonId_';
 
-export const getAllTrees = (): FamilyTree[] => {
-  const data = localStorage.getItem(TREES_KEY);
-  return data ? JSON.parse(data) : [];
-};
-
-export const loadPublicTreesIfNeeded = (): void => {
-  const alreadyLoaded = localStorage.getItem(PUBLIC_TREES_LOADED_KEY);
+export const loadPublicTreesIfNeeded = async (): Promise<void> => {
+  const alreadyLoaded = await indexedDBProvider.getSetting<boolean>('publicTreesLoaded');
   if (alreadyLoaded) return;
 
-  const existingTrees = getAllTrees();
+  const existingTrees = await indexedDBProvider.getAllTrees();
   const publicTrees = getPublicTrees();
-  
+
   const newTrees = publicTrees.filter(
     pt => !existingTrees.some(et => et.treeId === pt.treeId)
   );
 
-  if (newTrees.length > 0) {
-    const allTrees = [...existingTrees, ...newTrees];
-    localStorage.setItem(TREES_KEY, JSON.stringify(allTrees));
+  for (const tree of newTrees) {
+    tree.treeData = tree.treeData.map(p => ({
+      ...p,
+      lifeEvents: p.lifeEvents || [],
+    }));
+    await indexedDBProvider.saveTree(tree);
   }
-  
-  localStorage.setItem(PUBLIC_TREES_LOADED_KEY, 'true');
+
+  await indexedDBProvider.setSetting('publicTreesLoaded', true);
 };
 
-export const getTreeList = (): (TreeListItem & { isPublic?: boolean })[] => {
-  return getAllTrees().map(t => ({ treeId: t.treeId, treeName: t.treeName, isPublic: t.isPublic }));
+export const getAllTrees = (): Promise<FamilyTree[]> => {
+  return indexedDBProvider.getAllTrees();
 };
 
-export const getTree = (treeId: string): FamilyTree | null => {
-  const trees = getAllTrees();
-  return trees.find(t => t.treeId === treeId) || null;
+export const getTreeList = (): Promise<TreeListItem[]> => {
+  return indexedDBProvider.listTrees();
 };
 
-export const saveTree = async (tree: FamilyTree): Promise<void> => {
-  const trees = getAllTrees();
-  const index = trees.findIndex(t => t.treeId === tree.treeId);
-  tree.modifyDate = new Date().toISOString();
-  
-  if (index >= 0) {
-    trees[index] = tree;
-  } else {
-    trees.push(tree);
-  }
-  
-  // We don't want to store fileHandles in localStorage as they are not serializable
-  const treesToSave = trees.map(({ fileHandle, ...rest }) => rest);
-  localStorage.setItem(TREES_KEY, JSON.stringify(treesToSave));
-
-  // If we have a file handle, save it to the file system automatically
-  if (tree.fileHandle && 'createWritable' in tree.fileHandle) {
-    try {
-      const writable = await (tree.fileHandle as FileSystemFileHandle).createWritable();
-      const treeToSaveToFile = { ...tree };
-      delete treeToSaveToFile.fileHandle; // Don't save the handle in the json itself
-      await writable.write(JSON.stringify(treeToSaveToFile, null, 2));
-      await writable.close();
-      console.log('Successfully auto-saved to file');
-    } catch (error) {
-      console.error('Failed to auto-save to file:', error);
-      // In a real app we might want to alert the user here if saving fails
-    }
-  }
+export const getTree = (treeId: string): Promise<FamilyTree | null> => {
+  return indexedDBProvider.getTree(treeId);
 };
 
-export const deleteTree = (treeId: string): void => {
-  const trees = getAllTrees().filter(t => t.treeId !== treeId);
-  localStorage.setItem(TREES_KEY, JSON.stringify(trees));
+export const saveTree = (tree: FamilyTree): Promise<void> => {
+  return indexedDBProvider.saveTree(tree);
 };
 
-export const getCurrentTreeId = (): string | null => {
-  return localStorage.getItem(CURRENT_TREE_KEY);
+export const deleteTree = (treeId: string): Promise<void> => {
+  return indexedDBProvider.deleteTree(treeId);
 };
 
-export const setCurrentTreeId = (treeId: string | null): void => {
+export const getCurrentTreeId = (): Promise<string | null> => {
+  return indexedDBProvider.getSetting<string>('currentTreeId');
+};
+
+export const setCurrentTreeId = async (treeId: string | null): Promise<void> => {
   if (treeId) {
-    localStorage.setItem(CURRENT_TREE_KEY, treeId);
+    await indexedDBProvider.setSetting('currentTreeId', treeId);
   } else {
-    localStorage.removeItem(CURRENT_TREE_KEY);
+    await indexedDBProvider.deleteSetting('currentTreeId');
   }
+};
+
+export const getMainPersonId = (treeId: string): Promise<string | null> => {
+  return indexedDBProvider.getSetting<string>(MAIN_PERSON_KEY + treeId);
+};
+
+export const setMainPersonId = (treeId: string, personId: string | null): Promise<void> => {
+  if (personId) {
+    return indexedDBProvider.setSetting(MAIN_PERSON_KEY + treeId, personId);
+  }
+  return indexedDBProvider.deleteSetting(MAIN_PERSON_KEY + treeId);
 };
 
 export const downloadTree = (tree: FamilyTree): void => {
-  const json = JSON.stringify(tree, null, 2);
+  const { fileHandle: _fh, ...treeWithoutHandle } = tree;
+  const json = JSON.stringify(treeWithoutHandle, null, 2);
   const blob = new Blob([json], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -114,6 +98,6 @@ export const createEmptyTree = (name: string): FamilyTree => {
     creatorEmailId: 'local@familytree.app',
     createDate: new Date().toISOString(),
     modifyDate: new Date().toISOString(),
-    treeData: []
+    treeData: [],
   };
 };

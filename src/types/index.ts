@@ -4,6 +4,28 @@ export interface Spouse {
   divorceDate: string;
 }
 
+export type LifeEventType =
+  | 'birth'
+  | 'marriage'
+  | 'divorce'
+  | 'graduation'
+  | 'job'
+  | 'retirement'
+  | 'death'
+  | 'custom';
+
+export interface LifeEvent {
+  eventId: string;
+  type: LifeEventType;
+  title: string;
+  date: string;
+  endDate?: string;
+  location?: string;
+  description?: string;
+  linkedPersonIds?: string[];
+  photoUrl?: string;
+}
+
 export interface Person {
   personId: string;
   firstName: string;
@@ -16,6 +38,8 @@ export interface Person {
   spouses: Spouse[];
   motherId?: string;
   fatherId?: string;
+  lifeEvents: LifeEvent[];
+  profilePhotoUrl?: string;
 }
 
 export interface FamilyTree {
@@ -27,13 +51,14 @@ export interface FamilyTree {
   treeData: Person[];
   defaultPersonId?: string;
   isPublic?: boolean;
-  fileHandle?: any; // To store the handle in memory
+  fileHandle?: any;
 }
 
 export interface TreeListItem {
   treeId: string;
   treeName: string;
-  fileHandle?: any; // FileSystemFileHandle
+  isPublic?: boolean;
+  fileHandle?: any;
 }
 
 export interface Position {

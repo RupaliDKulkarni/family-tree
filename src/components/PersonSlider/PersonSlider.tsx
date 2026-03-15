@@ -1,24 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Person, FamilyTree } from '../../types';
+import { Person } from '../../types';
+import { useTree } from '../../hooks/useTree';
+import { useUI } from '../../hooks/useUI';
 import { generatePersonId } from '../../utils/storage';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import './PersonSlider.css';
-
-interface PersonSliderProps {
-  isOpen: boolean;
-  onClose: () => void;
-  person: Person | null;
-  tree: FamilyTree | null;
-  relationContext?: {
-    parentId: string;
-    relation: 'child' | 'parent' | 'spouse';
-  };
-  onSave: (person: Person, relationContext?: { parentId: string; relation: 'child' | 'parent' | 'spouse' }) => void;
-  onDelete?: (personId: string) => void;
-  onLinkExistingSpouse?: (existingSpouseId: string, ofPersonId: string, marriageDate: string, divorceDate: string) => void;
-  onUpdateSpouseDates?: (personId: string, spouseId: string, marriageDate: string, divorceDate: string) => void;
-  onDeleteSpouse?: (personId: string, spouseId: string) => void;
-}
 
 const emptyPerson: Omit<Person, 'personId'> = {
   firstName: '',
@@ -28,21 +14,18 @@ const emptyPerson: Omit<Person, 'personId'> = {
   dod: '',
   address: '',
   notes: '',
-  spouses: []
+  spouses: [],
+  lifeEvents: [],
 };
 
-const PersonSlider: React.FC<PersonSliderProps> = ({
-  isOpen,
-  onClose,
-  person,
-  tree,
-  relationContext,
-  onSave,
-  onDelete,
-  onLinkExistingSpouse,
-  onUpdateSpouseDates,
-  onDeleteSpouse
-}) => {
+const PersonSlider: React.FC = () => {
+  const { currentTree, savePerson, deletePerson, linkExistingSpouse, updateSpouseDates, deleteSpouse } = useTree();
+  const { sliderOpen, editingPerson: person, relationContext, closeSlider } = useUI();
+
+  const tree = currentTree;
+  const isOpen = sliderOpen;
+  const onClose = closeSlider;
+
   const [formData, setFormData] = useState<Person>({ ...emptyPerson, personId: '' });
   const [selectedFatherId, setSelectedFatherId] = useState<string>('');
   const [selectedMotherId, setSelectedMotherId] = useState<string>('');
@@ -175,18 +158,14 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
   }, [formData, person, isEditing, selectedFatherId, selectedMotherId, selectedSpouseId, isSpouseRelation, spouseMode, marriageDate, divorceDate]);
 
   const handleOverlayClick = () => {
-    if (!hasChanges) {
-      onClose();
-    }
+    if (!hasChanges) onClose();
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (isSpouseRelation && editingSpouseId && relationContext) {
-      if (onUpdateSpouseDates) {
-        onUpdateSpouseDates(relationContext.parentId, editingSpouseId, marriageDate, divorceDate);
-      }
+      updateSpouseDates(relationContext.parentId, editingSpouseId, marriageDate, divorceDate);
       setEditingSpouseId(null);
       setMarriageDate('');
       setDivorceDate('');
@@ -195,26 +174,21 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
     }
 
     if (isSpouseRelation && spouseMode === 'select') {
-      if (!selectedSpouseId) {
-        alert('Please select a person');
-        return;
-      }
-      if (onLinkExistingSpouse && relationContext) {
-        onLinkExistingSpouse(selectedSpouseId, relationContext.parentId, marriageDate, divorceDate);
+      if (!selectedSpouseId) { alert('Please select a person'); return; }
+      if (relationContext) {
+        linkExistingSpouse(selectedSpouseId, relationContext.parentId, marriageDate, divorceDate);
       }
       onClose();
       return;
     }
 
-    if (!formData.firstName.trim()) {
-      alert('First name is required');
-      return;
-    }
+    if (!formData.firstName.trim()) { alert('First name is required'); return; }
 
     const updatedPerson: Person = {
       ...formData,
       fatherId: selectedFatherId || undefined,
       motherId: selectedMotherId || undefined,
+      lifeEvents: formData.lifeEvents || [],
     };
 
     if (isSpouseRelation && spouseMode === 'new' && relationContext) {
@@ -230,7 +204,7 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
       updatedPerson.spouses = [];
     }
 
-    onSave(updatedPerson, relationContext);
+    savePerson(updatedPerson, relationContext);
     onClose();
   };
 
@@ -245,8 +219,8 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
   };
 
   const confirmDelete = () => {
-    if (person && onDelete) {
-      onDelete(person.personId);
+    if (person) {
+      deletePerson(person.personId);
       setShowDeleteConfirm(false);
       onClose();
     }
@@ -258,8 +232,8 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
   };
 
   const confirmDeleteSpouse = () => {
-    if (spouseToDelete && onDeleteSpouse && relationContext) {
-      onDeleteSpouse(relationContext.parentId, spouseToDelete.spouseId);
+    if (spouseToDelete && relationContext) {
+      deleteSpouse(relationContext.parentId, spouseToDelete.spouseId);
       setSpouseToDelete(null);
       setShowSpouseDeleteConfirm(false);
     }
@@ -303,28 +277,12 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
               <div key={spouse.spouseId} className="spouse-item">
                 <div className="spouse-item-info">
                   <strong>{spouse.spouseName}</strong>
-                  <div className="spouse-dates">
-                    Married: {spouse.marriageDate || 'Not specified'}
-                  </div>
-                  <div className="spouse-dates">
-                    Divorced: {spouse.divorceDate || 'Not specified'}
-                  </div>
+                  <div className="spouse-dates">Married: {spouse.marriageDate || 'Not specified'}</div>
+                  <div className="spouse-dates">Divorced: {spouse.divorceDate || 'Not specified'}</div>
                 </div>
                 <div className="spouse-item-actions">
-                  <button
-                    type="button"
-                    className="btn-update-spouse"
-                    onClick={() => handleEditSpouse(spouse)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-delete-spouse"
-                    onClick={() => handleDeleteSpouse(spouse.spouseId, spouse.spouseName)}
-                  >
-                    Delete
-                  </button>
+                  <button type="button" className="btn-update-spouse" onClick={() => handleEditSpouse(spouse)}>Update</button>
+                  <button type="button" className="btn-delete-spouse" onClick={() => handleDeleteSpouse(spouse.spouseId, spouse.spouseName)}>Delete</button>
                 </div>
               </div>
             ))}
@@ -337,42 +295,23 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
           <label className="section-label">Update Marriage Details</label>
           <div className="form-group">
             <label>Spouse</label>
-            <input
-              type="text"
-              value={parentSpousesWithDetails.find(s => s.spouseId === editingSpouseId)?.spouseName || ''}
-              disabled
-            />
+            <input type="text" value={parentSpousesWithDetails.find(s => s.spouseId === editingSpouseId)?.spouseName || ''} disabled />
           </div>
           <div className="form-row">
             <div className="form-group">
               <label>Marriage Date</label>
-              <input
-                type="date"
-                value={marriageDate}
-                onChange={(e) => setMarriageDate(e.target.value)}
-              />
+              <input type="date" value={marriageDate} onChange={(e) => setMarriageDate(e.target.value)} />
             </div>
             <div className="form-group">
               <label>Divorce Date</label>
-              <input
-                type="date"
-                value={divorceDate}
-                onChange={(e) => setDivorceDate(e.target.value)}
-              />
+              <input type="date" value={divorceDate} onChange={(e) => setDivorceDate(e.target.value)} />
             </div>
           </div>
         </div>
       )}
 
       <div className="form-group">
-        <button
-          type="button"
-          className="btn-add-new-spouse"
-          onClick={() => {
-            setSpouseMode('select');
-            setEditingSpouseId(null);
-          }}
-        >
+        <button type="button" className="btn-add-new-spouse" onClick={() => { setSpouseMode('select'); setEditingSpouseId(null); }}>
           + Add Another Spouse
         </button>
       </div>
@@ -381,11 +320,7 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
         {editingSpouseId ? (
           <>
             <button type="submit" className="btn-save">Save Changes</button>
-            <button type="button" className="btn-cancel" onClick={() => {
-              setEditingSpouseId(null);
-              setMarriageDate('');
-              setDivorceDate('');
-            }}>Cancel Update</button>
+            <button type="button" className="btn-cancel" onClick={() => { setEditingSpouseId(null); setMarriageDate(''); setDivorceDate(''); }}>Cancel Update</button>
           </>
         ) : (
           <button type="button" className="btn-cancel" onClick={onClose}>Close</button>
@@ -396,26 +331,16 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
 
   const renderSpouseSelectMode = () => (
     <>
-      <button
-        type="button"
-        className="btn-back-to-select"
-        onClick={() => setSpouseMode('existing')}
-      >
+      <button type="button" className="btn-back-to-select" onClick={() => setSpouseMode('existing')}>
         &larr; Back to existing spouses
       </button>
 
       <div className="form-group">
         <label>Select Spouse</label>
-        <select
-          value={selectedSpouseId}
-          onChange={(e) => setSelectedSpouseId(e.target.value)}
-          autoFocus
-        >
+        <select value={selectedSpouseId} onChange={(e) => setSelectedSpouseId(e.target.value)} autoFocus>
           <option value="">-- Select Person --</option>
           {oppositeSexPersons.map(p => (
-            <option key={p.personId} value={p.personId}>
-              {p.firstName} {p.lastName}
-            </option>
+            <option key={p.personId} value={p.personId}>{p.firstName} {p.lastName}</option>
           ))}
         </select>
       </div>
@@ -423,30 +348,16 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
       <div className="form-row">
         <div className="form-group">
           <label>Marriage Date</label>
-          <input
-            type="date"
-            value={marriageDate}
-            onChange={(e) => setMarriageDate(e.target.value)}
-          />
+          <input type="date" value={marriageDate} onChange={(e) => setMarriageDate(e.target.value)} />
         </div>
         <div className="form-group">
           <label>Divorce Date</label>
-          <input
-            type="date"
-            value={divorceDate}
-            onChange={(e) => setDivorceDate(e.target.value)}
-          />
+          <input type="date" value={divorceDate} onChange={(e) => setDivorceDate(e.target.value)} />
         </div>
       </div>
 
       <div className="form-group">
-        <button
-          type="button"
-          className="btn-add-new-spouse"
-          onClick={() => setSpouseMode('new')}
-        >
-          + Add New Person
-        </button>
+        <button type="button" className="btn-add-new-spouse" onClick={() => setSpouseMode('new')}>+ Add New Person</button>
       </div>
 
       <div className="slider-actions">
@@ -459,36 +370,19 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
   const renderNewPersonForm = () => (
     <>
       {isSpouseRelation && spouseMode === 'new' && (
-        <button
-          type="button"
-          className="btn-back-to-select"
-          onClick={() => setSpouseMode('select')}
-        >
+        <button type="button" className="btn-back-to-select" onClick={() => setSpouseMode('select')}>
           &larr; Back to select existing person
         </button>
       )}
 
       <div className="form-group">
         <label>First Name *</label>
-        <input
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          placeholder="Enter first name"
-          autoFocus
-        />
+        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Enter first name" autoFocus />
       </div>
 
       <div className="form-group">
         <label>Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          placeholder="Enter last name"
-        />
+        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Enter last name" />
       </div>
 
       <div className="form-group">
@@ -502,21 +396,11 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
       <div className="form-row">
         <div className="form-group">
           <label>Date of Birth</label>
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-          />
+          <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label>Date of Death</label>
-          <input
-            type="date"
-            name="dod"
-            value={formData.dod || ''}
-            onChange={handleChange}
-          />
+          <input type="date" name="dod" value={formData.dod || ''} onChange={handleChange} />
         </div>
       </div>
 
@@ -525,28 +409,16 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
           <label className="section-label">Spouse Details</label>
           <div className="form-group">
             <label>Spouse</label>
-            <input
-              type="text"
-              value={`${parentPerson?.firstName || ''} ${parentPerson?.lastName || ''}`.trim()}
-              disabled
-            />
+            <input type="text" value={`${parentPerson?.firstName || ''} ${parentPerson?.lastName || ''}`.trim()} disabled />
           </div>
           <div className="form-row">
             <div className="form-group">
               <label>Marriage Date</label>
-              <input
-                type="date"
-                value={marriageDate}
-                onChange={(e) => setMarriageDate(e.target.value)}
-              />
+              <input type="date" value={marriageDate} onChange={(e) => setMarriageDate(e.target.value)} />
             </div>
             <div className="form-group">
               <label>Divorce Date</label>
-              <input
-                type="date"
-                value={divorceDate}
-                onChange={(e) => setDivorceDate(e.target.value)}
-              />
+              <input type="date" value={divorceDate} onChange={(e) => setDivorceDate(e.target.value)} />
             </div>
           </div>
         </div>
@@ -556,45 +428,30 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
 
           <div className="form-group">
             <label>Father</label>
-            <select
-              value={selectedFatherId}
-              onChange={(e) => setSelectedFatherId(e.target.value)}
-            >
+            <select value={selectedFatherId} onChange={(e) => setSelectedFatherId(e.target.value)}>
               <option value="">-- No Father --</option>
               {males.map(p => (
-                <option key={p.personId} value={p.personId}>
-                  {p.firstName} {p.lastName}
-                </option>
+                <option key={p.personId} value={p.personId}>{p.firstName} {p.lastName}</option>
               ))}
             </select>
           </div>
 
           <div className="form-group">
             <label>Mother</label>
-            <select
-              value={selectedMotherId}
-              onChange={(e) => setSelectedMotherId(e.target.value)}
-            >
+            <select value={selectedMotherId} onChange={(e) => setSelectedMotherId(e.target.value)}>
               <option value="">-- No Mother --</option>
               {females.map(p => (
-                <option key={p.personId} value={p.personId}>
-                  {p.firstName} {p.lastName}
-                </option>
+                <option key={p.personId} value={p.personId}>{p.firstName} {p.lastName}</option>
               ))}
             </select>
           </div>
 
           <div className="form-group">
             <label>Spouse</label>
-            <select
-              value={selectedSpouseId}
-              onChange={(e) => setSelectedSpouseId(e.target.value)}
-            >
+            <select value={selectedSpouseId} onChange={(e) => setSelectedSpouseId(e.target.value)}>
               <option value="">-- No Spouse --</option>
               {potentialSpouses.map(p => (
-                <option key={p.personId} value={p.personId}>
-                  {p.firstName} {p.lastName}
-                </option>
+                <option key={p.personId} value={p.personId}>{p.firstName} {p.lastName}</option>
               ))}
             </select>
           </div>
@@ -603,38 +460,20 @@ const PersonSlider: React.FC<PersonSliderProps> = ({
 
       <div className="form-group">
         <label>Address</label>
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          placeholder="Enter address"
-        />
+        <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Enter address" />
       </div>
 
       <div className="form-group">
         <label>Notes</label>
-        <textarea
-          name="notes"
-          value={formData.notes}
-          onChange={handleChange}
-          placeholder="Additional notes..."
-          rows={3}
-        />
+        <textarea name="notes" value={formData.notes} onChange={handleChange} placeholder="Additional notes..." rows={3} />
       </div>
 
       <div className="slider-actions">
-        <button type="submit" className="btn-save">
-          {isEditing ? 'Update' : 'Add Person'}
-        </button>
-        {isEditing && onDelete && (
-          <button type="button" className="btn-delete" onClick={handleDelete}>
-            Delete
-          </button>
+        <button type="submit" className="btn-save">{isEditing ? 'Update' : 'Add Person'}</button>
+        {isEditing && (
+          <button type="button" className="btn-delete" onClick={handleDelete}>Delete</button>
         )}
-        <button type="button" className="btn-cancel" onClick={onClose}>
-          Cancel
-        </button>
+        <button type="button" className="btn-cancel" onClick={onClose}>Cancel</button>
       </div>
     </>
   );

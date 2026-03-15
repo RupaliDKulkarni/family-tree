@@ -1,0 +1,186 @@
+.login-btn {
+  padding: 6px 14px;
+  border: 1px solid #4a90d9;
+  background: transparent;
+  color: #4a90d9;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.login-btn:hover:not(:disabled) {
+  background: #4a90d9;
+  color: white;
+  cursor: pointer;
+}
+
+/* .login-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+} */
+
+.login-btn.landing {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.login-btn.sidebar {
+  color: #ccc;
+  border-color: #666;
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.login-btn.sidebar:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: #aaa;
+  cursor: pointer;
+}
+
+.login-btn.ribbon {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-color: #4a90d9;
+  color: #4a90d9;
+}
+
+.login-btn.ribbon:hover:not(:disabled) {
+  background: #4a90d9;
+  color: white;
+}
+
+.login-loading {
+  font-size: 12px;
+  color: #999;
+}
+
+.login-user {
+  position: relative;
+  display: inline-flex;
+}
+
+.login-user-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.login-user-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.login-user.landing .login-user-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.login-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.login-avatar-placeholder {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #4a90d9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.login-name {
+  font-size: 13px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.login-user.sidebar .login-name {
+  color: #ddd;
+  font-size: 12px;
+}
+
+.login-user.landing .login-name {
+  color: #333;
+}
+
+.login-user.ribbon .login-name {
+  color: #333;
+  font-size: 12px;
+}
+
+.login-user.ribbon .login-user-toggle:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.login-user.ribbon .login-avatar {
+  width: 22px;
+  height: 22px;
+}
+
+.login-user.ribbon .login-avatar-placeholder {
+  width: 22px;
+  height: 22px;
+  font-size: 11px;
+}
+
+.login-caret {
+  font-size: 10px;
+  color: #999;
+}
+
+.login-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.login-dropdown-info {
+  padding: 10px 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.login-dropdown-email {
+  font-size: 12px;
+  color: #666;
+}
+
+.login-dropdown-signout {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: #e74c3c;
+  transition: background 0.2s;
+}
+
+.login-dropdown-signout:hover {
+  background: #fef2f2;
+}

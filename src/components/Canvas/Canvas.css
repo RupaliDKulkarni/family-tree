@@ -7,6 +7,7 @@
   position: relative;
   overflow: hidden;
   cursor: grab;
+  touch-action: none;
 }
 
 .canvas:active {
@@ -118,6 +119,7 @@
   gap: 4px;
   z-index: 100;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: default;
 }
 
 .ribbon-section {
@@ -204,6 +206,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.ribbon-login {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .zoom-display {
@@ -387,10 +395,6 @@
 
 /* ===== Mobile Canvas ===== */
 @media (max-width: 768px) {
-  .canvas {
-    touch-action: none;
-  }
-
   /* Compact ribbon */
   .canvas-ribbon {
     height: 40px;
