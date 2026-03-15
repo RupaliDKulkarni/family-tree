@@ -3,7 +3,6 @@ import { Routes, Route, Navigate, useParams, useNavigate } from 'react-router-do
 import { useTree } from './hooks/useTree';
 import { useUI } from './hooks/useUI';
 import LandingPage from './components/LandingPage/LandingPage';
-import Sidebar from './components/Sidebar/Sidebar';
 import Canvas from './components/Canvas/Canvas';
 import PersonSlider from './components/PersonSlider/PersonSlider';
 import NewTreeModal from './components/NewTreeModal/NewTreeModal';
@@ -28,7 +27,6 @@ function TreeViewInner() {
 
   return (
     <div className="app-container">
-      <Sidebar />
       <Canvas />
       <PersonSlider />
       <NewTreeModal

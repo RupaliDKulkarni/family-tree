@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Person } from '../../types';
 import { useTree } from '../../hooks/useTree';
 import { useNavigation } from '../../hooks/useNavigation';
@@ -31,7 +32,8 @@ const H_GAP = 50;
 const V_GAP = 70;
 
 const Canvas: React.FC = () => {
-  const { currentTree, setDefaultPerson } = useTree();
+  const { trees, currentTree, setDefaultPerson } = useTree();
+  const navigate = useNavigate();
   const {
     mainPersonId, selectedPersonId, selectPerson, setMainPerson,
     isLoading, history, historyIndex, navigateBack, navigateForward
@@ -39,7 +41,7 @@ const Canvas: React.FC = () => {
   const {
     showSiblings, showCousins, showFullTree,
     toggleSiblings, toggleCousins, toggleFullTree,
-    setShowFullTree, openSlider, closeMobilePanelRef
+    setShowFullTree, openSlider, openNewTreeModal, closeMobilePanelRef
   } = useUI();
 
   const tree = currentTree;
@@ -51,8 +53,12 @@ const Canvas: React.FC = () => {
   const [isPanning, setIsPanning] = useState(false);
   const [startPan, setStartPan] = useState({ x: 0, y: 0 });
   const [hoveredPersonId, setHoveredPersonId] = useState<string | null>(null);
-  const [showOverflowMenu, setShowOverflowMenu] = useState(false);
   const [tappedPersonId, setTappedPersonId] = useState<string | null>(null);
+  const [treeSelectorOpen, setTreeSelectorOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isMaximized, setIsMaximized] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const lastTouchDist = useRef<number | null>(null);
   const lastTouchCenter = useRef<{ x: number; y: number } | null>(null);
   const activeTouchCount = useRef(0);
@@ -69,6 +75,25 @@ const Canvas: React.FC = () => {
     tree?.treeData.forEach(p => map.set(p.personId, p));
     return map;
   }, [tree]);
+
+  const filteredMembers = useMemo(() => {
+    if (!tree) return [];
+    const q = searchQuery.toLowerCase();
+    if (!q) return tree.treeData;
+    return tree.treeData.filter(p =>
+      p.firstName.toLowerCase().includes(q) || p.lastName.toLowerCase().includes(q)
+    );
+  }, [tree, searchQuery]);
+
+  const myTrees = useMemo(() => trees.filter(t => !t.isPublic), [trees]);
+  const publicTrees = useMemo(() => trees.filter(t => t.isPublic), [trees]);
+
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+    if (!searchOpen) setSearchQuery('');
+  }, [searchOpen]);
 
   const getChildren = useCallback((personId: string): Person[] => {
     if (!tree) return [];
@@ -850,10 +875,11 @@ const Canvas: React.FC = () => {
       if (activeTouchCount.current > 1) return;
     }
     const target = e.target as HTMLElement;
-    const isInteractive = target.closest('button, .canvas-ribbon, .floating-toolbar, .person-node');
+    const isInteractive = target.closest('button, input, .floating-top-bar, .floating-search, .floating-bottom-left, .floating-toolbar, .floating-expand-btn, .person-node');
     if (!isInteractive && canvasRef.current?.contains(target)) {
       closeMobilePanelRef?.current?.();
-      setShowOverflowMenu(false);
+      setTreeSelectorOpen(false);
+      setSearchOpen(false);
       setIsPanning(true);
       setStartPan({ x: e.clientX - pan.x, y: e.clientY - pan.y });
       canvasRef.current.setPointerCapture(e.pointerId);
@@ -1048,95 +1074,110 @@ const Canvas: React.FC = () => {
         </div>
       )}
 
-      <div className="canvas-ribbon">
-        <div className="ribbon-section">
-          <span className="ribbon-label">Navigate</span>
-          <div className="ribbon-buttons">
-            <button className="ribbon-btn" onClick={navigateBack} disabled={historyIndex <= 0} title="Go back (←)">
-              {isMobile ? '←' : '← Back'}
-            </button>
-            {!isMobile && (
-              <button className="ribbon-btn" onClick={navigateForward} disabled={historyIndex >= history.length - 1} title="Go forward (→)">
-                Forward →
-              </button>
-            )}
-          </div>
-        </div>
-
-        <div className="ribbon-divider" />
-
-        <div className="ribbon-section">
-          <span className="ribbon-label">View</span>
-          <div className="ribbon-buttons">
-            <button className={`ribbon-btn toggle ${showFullTree ? 'active' : 'inactive'}`}
-              onClick={toggleFullTree} title="Show Full Tree (all members)">
-              {isMobile ? '🌳' : '🌳 Full Tree'}
-            </button>
-            <button className={`ribbon-btn toggle ${showSiblings ? 'active' : 'inactive'}`}
-              onClick={toggleSiblings} disabled={showFullTree} title="Show/Hide Siblings">
-              {isMobile ? '👥' : '👥 Siblings'}
-            </button>
-            {!isMobile && (
-              <button className={`ribbon-btn toggle ${showCousins ? 'active' : 'inactive'}`}
-                onClick={toggleCousins} disabled={showFullTree} title="Show/Hide Cousins">
-                👨‍👩‍👧‍👦 Cousins
-              </button>
-            )}
-          </div>
-        </div>
-
-        <div className="ribbon-divider" />
-
-        {!isMobile && (
-          <>
-            <div className="ribbon-section">
-              <span className="ribbon-label">Zoom</span>
-              <div className="ribbon-buttons">
-                <button className="ribbon-btn" onClick={() => setZoom(z => Math.max(z * 0.8, 0.3))}>−</button>
-                <span className="zoom-display">{Math.round(zoom * 100)}%</span>
-                <button className="ribbon-btn" onClick={() => setZoom(z => Math.min(z * 1.2, 2))}>+</button>
-                <button className="ribbon-btn" onClick={() => { setZoom(1); if(canvasRef.current) { const rect = canvasRef.current.getBoundingClientRect(); setPan({ x: rect.width / 2, y: 150 }); } }}>Reset</button>
-              </div>
-            </div>
-            <div className="ribbon-divider" />
-          </>
-        )}
-
-        <div className="ribbon-section">
-          <span className="ribbon-label">Actions</span>
-          <div className="ribbon-buttons">
-            <button className="ribbon-btn primary" onClick={() => openSlider()}>
-              {isMobile ? '+' : '+ Add Person'}
-            </button>
-          </div>
-        </div>
-
-        {isMobile && (
-          <>
-            <div className="ribbon-spacer" />
-            <button className="ribbon-btn ribbon-overflow-toggle" onClick={() => setShowOverflowMenu(prev => !prev)} title="More options">
-              ⋯
-            </button>
-            {showOverflowMenu && (
-              <div className="ribbon-overflow-menu">
-                <button className={`ribbon-btn toggle ${showCousins ? 'active' : 'inactive'}`}
-                  onClick={() => { toggleCousins(); setShowOverflowMenu(false); }} disabled={showFullTree}>
-                  👨‍👩‍👧‍👦 Cousins
-                </button>
-                <button className="ribbon-btn" onClick={() => { setZoom(1); if(canvasRef.current) { const rect = canvasRef.current.getBoundingClientRect(); setPan({ x: rect.width / 2, y: 150 }); } setShowOverflowMenu(false); }}>
-                  Reset Zoom
-                </button>
-              </div>
-            )}
-          </>
-        )}
-
-        {!isMobile && <div className="ribbon-spacer" />}
-
-        <div className="ribbon-login">
+      {/* Floating toolbar - top center */}
+      {!isMaximized && (
+        <div className="floating-top-bar">
+          <button className="ftb-btn" onClick={navigateBack} disabled={historyIndex <= 0} title="Go back (←)">←</button>
+          <button className="ftb-btn" onClick={navigateForward} disabled={historyIndex >= history.length - 1} title="Go forward (→)">→</button>
+          <div className="ftb-divider" />
+          <button className={`ftb-btn toggle ${showFullTree ? 'active' : ''}`} onClick={toggleFullTree} title="Full Tree">🌳</button>
+          <button className={`ftb-btn toggle ${showSiblings ? 'active' : ''}`} onClick={toggleSiblings} disabled={showFullTree} title="Siblings">👥</button>
+          <button className={`ftb-btn toggle ${showCousins ? 'active' : ''}`} onClick={toggleCousins} disabled={showFullTree} title="Cousins">👨‍👩‍👧‍👦</button>
+          <div className="ftb-divider" />
+          <button className="ftb-btn primary" onClick={() => openSlider()} title="Add Person">+</button>
+          <div className="ftb-divider" />
           <LoginButton variant="ribbon" />
         </div>
-      </div>
+      )}
+
+      {/* Floating search - top right */}
+      {!isMaximized && (
+        <div className="floating-search">
+          <button className="float-icon-btn" onClick={() => setSearchOpen(prev => !prev)} title="Search members">🔍</button>
+          {searchOpen && (
+            <div className="search-dropdown">
+              <input
+                ref={searchInputRef}
+                type="text"
+                className="search-input"
+                placeholder="Search members..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div className="search-results">
+                {filteredMembers.length === 0 ? (
+                  <div className="search-empty">No members found</div>
+                ) : (
+                  filteredMembers.map(p => (
+                    <button
+                      key={p.personId}
+                      className={`search-result-item ${mainPersonId === p.personId ? 'active' : ''}`}
+                      onClick={() => { setMainPerson(p.personId); setSearchOpen(false); }}
+                    >
+                      <span className={`member-gender ${p.gender}`}>{p.gender === 'male' ? '♂' : '♀'}</span>
+                      <span>{p.firstName} {p.lastName}</span>
+                    </button>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Floating bottom-left: tree selector + new tree + zoom */}
+      {!isMaximized && (
+        <div className="floating-bottom-left">
+          <div className="fbl-tree-selector">
+            <button className="fbl-tree-btn" onClick={() => setTreeSelectorOpen(prev => !prev)} title="Switch tree">
+              🌳 {tree?.treeName || 'Select Tree'}
+            </button>
+            {treeSelectorOpen && (
+              <div className="tree-selector-dropdown">
+                {myTrees.length > 0 && (
+                  <div className="tree-selector-section">
+                    <div className="tree-selector-label">My Trees</div>
+                    {myTrees.map(t => (
+                      <button
+                        key={t.treeId}
+                        className={`tree-selector-item ${currentTree?.treeId === t.treeId ? 'active' : ''}`}
+                        onClick={() => { navigate(`/tree/${t.treeId}`); setTreeSelectorOpen(false); }}
+                      >
+                        🏠 {t.treeName}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {publicTrees.length > 0 && (
+                  <div className="tree-selector-section">
+                    <div className="tree-selector-label">Public Trees</div>
+                    {publicTrees.map(t => (
+                      <button
+                        key={t.treeId}
+                        className={`tree-selector-item ${currentTree?.treeId === t.treeId ? 'active' : ''}`}
+                        onClick={() => { navigate(`/tree/${t.treeId}`); setTreeSelectorOpen(false); }}
+                      >
+                        🌐 {t.treeName}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          <button className="fbl-new-tree-btn" onClick={() => openNewTreeModal()} title="Create new tree">+ New Tree</button>
+          <span className="fbl-zoom">{Math.round(zoom * 100)}%</span>
+        </div>
+      )}
+
+      {/* Floating expand/maximize button - bottom right */}
+      <button
+        className="floating-expand-btn"
+        onClick={() => setIsMaximized(prev => !prev)}
+        title={isMaximized ? 'Exit fullscreen' : 'Maximize'}
+      >
+        {isMaximized ? '⊡' : '⊞'}
+      </button>
 
       <div className="canvas-content"
         style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`, transformOrigin: '0 0' }}>
