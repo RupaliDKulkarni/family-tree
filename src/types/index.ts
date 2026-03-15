@@ -27,11 +27,13 @@ export interface FamilyTree {
   treeData: Person[];
   defaultPersonId?: string;
   isPublic?: boolean;
+  fileHandle?: any; // To store the handle in memory
 }
 
 export interface TreeListItem {
   treeId: string;
   treeName: string;
+  fileHandle?: any; // FileSystemFileHandle
 }
 
 export interface Position {

@@ -38,7 +38,7 @@ export const getTree = (treeId: string): FamilyTree | null => {
   return trees.find(t => t.treeId === treeId) || null;
 };
 
-export const saveTree = (tree: FamilyTree): void => {
+export const saveTree = async (tree: FamilyTree): Promise<void> => {
   const trees = getAllTrees();
   const index = trees.findIndex(t => t.treeId === tree.treeId);
   tree.modifyDate = new Date().toISOString();
@@ -49,7 +49,24 @@ export const saveTree = (tree: FamilyTree): void => {
     trees.push(tree);
   }
   
-  localStorage.setItem(TREES_KEY, JSON.stringify(trees));
+  // We don't want to store fileHandles in localStorage as they are not serializable
+  const treesToSave = trees.map(({ fileHandle, ...rest }) => rest);
+  localStorage.setItem(TREES_KEY, JSON.stringify(treesToSave));
+
+  // If we have a file handle, save it to the file system automatically
+  if (tree.fileHandle && 'createWritable' in tree.fileHandle) {
+    try {
+      const writable = await (tree.fileHandle as FileSystemFileHandle).createWritable();
+      const treeToSaveToFile = { ...tree };
+      delete treeToSaveToFile.fileHandle; // Don't save the handle in the json itself
+      await writable.write(JSON.stringify(treeToSaveToFile, null, 2));
+      await writable.close();
+      console.log('Successfully auto-saved to file');
+    } catch (error) {
+      console.error('Failed to auto-save to file:', error);
+      // In a real app we might want to alert the user here if saving fails
+    }
+  }
 };
 
 export const deleteTree = (treeId: string): void => {

@@ -148,8 +148,28 @@ function App() {
     setNewTreeModalOpen(true);
   };
 
-  const handleCreateTree = (treeName: string) => {
+  const handleCreateTree = async (treeName: string) => {
     const newTree = createEmptyTree(treeName);
+    
+    // Try to get a file handle for auto-saving
+    try {
+      if ('showSaveFilePicker' in window) {
+        const fileHandle = await (window as any).showSaveFilePicker({
+          suggestedName: `${treeName.replace(/\s+/g, '_')}.json`,
+          types: [{
+            description: 'JSON File',
+            accept: { 'application/json': ['.json'] },
+          }],
+        });
+        newTree.fileHandle = fileHandle;
+      }
+    } catch (err: any) {
+      // User cancelled the picker, just continue with local storage
+      if (err.name !== 'AbortError') {
+        console.error('Failed to get file handle:', err);
+      }
+    }
+    
     saveTree(newTree);
     setTrees(getTreeList());
     selectTree(newTree.treeId);

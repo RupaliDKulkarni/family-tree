@@ -127,6 +127,25 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className="sidebar-actions">
         <button className="btn-new" onClick={onNewTree}>+ New Tree</button>
         <button className="btn-import" onClick={handleImportClick}>Import Tree</button>
+        <button className="btn-open-file" onClick={async () => {
+          try {
+            const [fileHandle] = await (window as any).showOpenFilePicker({
+              types: [
+                {
+                  description: 'JSON Files',
+                  accept: { 'application/json': ['.json'] },
+                },
+              ],
+            });
+            const file = await fileHandle.getFile();
+            const contents = await file.text();
+            const tree = JSON.parse(contents) as FamilyTree;
+            tree.fileHandle = fileHandle; // Attach handle for auto-saving
+            onImportTree(tree);
+          } catch (err) {
+            console.error(err);
+          }
+        }}>Open File</button>
         <input
           ref={fileInputRef}
           type="file"
@@ -310,6 +329,28 @@ const Sidebar: React.FC<SidebarProps> = ({
           <button className="mobile-tab-btn" onClick={handleImportClick}>
             <span className="tab-icon">📥</span>
             <span className="tab-label">Import</span>
+          </button>
+          <button className="mobile-tab-btn" onClick={async () => {
+            try {
+              const [fileHandle] = await (window as any).showOpenFilePicker({
+                types: [
+                  {
+                    description: 'JSON Files',
+                    accept: { 'application/json': ['.json'] },
+                  },
+                ],
+              });
+              const file = await fileHandle.getFile();
+              const contents = await file.text();
+              const tree = JSON.parse(contents) as FamilyTree;
+              tree.fileHandle = fileHandle; // Attach handle for auto-saving
+              onImportTree(tree);
+            } catch (err) {
+              console.error(err);
+            }
+          }}>
+            <span className="tab-icon">📂</span>
+            <span className="tab-label">Open</span>
           </button>
           {currentTree && (
             <button className="mobile-tab-btn" onClick={onDownloadTree}>

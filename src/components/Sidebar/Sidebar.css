@@ -37,7 +37,7 @@
   background: var(--primary-hover);
 }
 
-.btn-import {
+.btn-import, .btn-open-file {
   background: transparent;
   border: 1px solid var(--sidebar-text);
   color: var(--sidebar-text);
@@ -45,7 +45,7 @@
   padding: 6px 10px;
 }
 
-.btn-import:hover {
+.btn-import:hover, .btn-open-file:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
