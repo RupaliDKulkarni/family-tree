@@ -32,11 +32,11 @@ const H_GAP = 50;
 const V_GAP = 70;
 
 const Canvas: React.FC = () => {
-  const { trees, currentTree, setDefaultPerson } = useTree();
+  const { trees, currentTree } = useTree();
   const navigate = useNavigate();
   const {
     mainPersonId, selectedPersonId, selectPerson, setMainPerson,
-    isLoading, history, historyIndex, navigateBack, navigateForward
+    isLoading,  navigateBack, navigateForward
   } = useNavigation();
   const {
     showSiblings, showCousins, showFullTree,
@@ -999,17 +999,17 @@ const Canvas: React.FC = () => {
     }
   }, [selectedPersonId, personMap, openSlider]);
 
-  const handleAddChildToSelected = useCallback(() => {
-    if (selectedPersonId) openSlider(null, selectedPersonId, 'child');
-  }, [selectedPersonId, openSlider]);
+  // const handleAddChildToSelected = useCallback(() => {
+  //   if (selectedPersonId) openSlider(null, selectedPersonId, 'child');
+  // }, [selectedPersonId, openSlider]);
 
-  const handleAddParentToSelected = useCallback(() => {
-    if (selectedPersonId) openSlider(null, selectedPersonId, 'parent');
-  }, [selectedPersonId, openSlider]);
+  // const handleAddParentToSelected = useCallback(() => {
+  //   if (selectedPersonId) openSlider(null, selectedPersonId, 'parent');
+  // }, [selectedPersonId, openSlider]);
 
-  const handleAddSpouseToSelected = useCallback(() => {
-    if (selectedPersonId) openSlider(null, selectedPersonId, 'spouse');
-  }, [selectedPersonId, openSlider]);
+  // const handleAddSpouseToSelected = useCallback(() => {
+  //   if (selectedPersonId) openSlider(null, selectedPersonId, 'spouse');
+  // }, [selectedPersonId, openSlider]);
 
   const selectedPerson = selectedPersonId ? personMap.get(selectedPersonId) : null;
 
