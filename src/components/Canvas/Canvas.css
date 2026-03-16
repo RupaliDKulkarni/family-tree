@@ -622,10 +622,10 @@ user-select: none;
   }
 
    .app-logo-watermark {    
-    top: 2px;
+    top: 45px;
     left: 0;  /* adjust as needed for spacing */
-    width: 50px; /* smaller on mobile */
-    font: 10px;;
+    width: 30px; /* smaller on mobile */
+    font: 8px;;
     writing-mode: vertical-rl;
     text-orientation: upright;
   }
@@ -639,7 +639,7 @@ user-select: none;
 
   .floating-search {
     top: 10px;
-    right: 10px;
+    right: 5px;
   }
 
   .search-dropdown {
