@@ -12,6 +12,19 @@
   touch-action: none;
 }
 
+.app-logo-watermark {
+  position: fixed;        /* stays fixed on screen */
+  top: 10px;              /* distance from top */
+  left: 10px;             /* distance from left */
+  width: 220px;           /* adjust size */
+  opacity: 0.2;          /* watermark effect */
+  pointer-events: none;   /* clicks pass through */
+  z-index: 1;             /* behind UI if needed */
+  font-size: 40px;
+  color: black;
+  user-select: none;
+}
+
 .canvas:active {
   cursor: grabbing;
 }
@@ -122,6 +135,7 @@
   z-index: 150;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   cursor: default;
+   user-select: none;
 }
 
 .ftb-btn {
@@ -182,6 +196,7 @@
   top: 20px;
   right: 20px;
   z-index: 150;
+  user-select: none;
 }
 
 .float-icon-btn {
@@ -277,22 +292,36 @@
 /* Floating Bottom Left  */
 /* ===================== */
 .floating-bottom-left {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   left: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
   z-index: 150;
+user-select: none;  
+
 }
+
+.floating-bottom-left {
+    bottom: 12px;
+    left: 12px;
+    gap: 6px;
+  }
+
 
 .fbl-tree-selector {
   position: relative;
 }
 
+.fbl-tree-btn-arrow
+{
+  margin-left: 15px;
+}
+
 .fbl-tree-btn {
   padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.92);  
   backdrop-filter: blur(8px);
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -411,6 +440,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 150;
   transition: background 0.15s;
+  user-select: none;
 }
 
 .floating-expand-btn:hover {
@@ -433,7 +463,7 @@
 /* ===================== */
 .floating-toolbar {
   position: absolute;
-  bottom: 70px;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
   background: white;
@@ -516,10 +546,12 @@
 }
 
 .toolbar-btn.close {
-  background: #fff;
-  padding: 0 8px;
-  font-size: 16px;
-  color: #999;
+  background: #111;
+  color: aqua;
+  padding: 0 2px;
+  width: 20px;
+  height: 20px;
+  font-size: 6px;  
 }
 
 .toolbar-btn.close:hover {
@@ -570,6 +602,15 @@
   z-index: 1;
 }
 
+/* Laptop screens */
+@media (max-width: 1366px) {
+  .app-logo-watermark {
+    width: 100px;       /* smaller on laptop */
+    font-size: 28px;
+  }
+}
+
+
 /* ===================== */
 /* Mobile                */
 /* ===================== */
@@ -580,6 +621,15 @@
     gap: 2px;
   }
 
+   .app-logo-watermark {    
+    top: 2px;
+    left: 0;  /* adjust as needed for spacing */
+    width: 50px; /* smaller on mobile */
+    font: 10px;;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+  
   .ftb-btn {
     height: 28px;
     min-width: 28px;
@@ -596,16 +646,11 @@
     width: 220px;
   }
 
-  .floating-bottom-left {
-    bottom: 12px;
-    left: 12px;
-    gap: 6px;
-  }
-
+  
   .fbl-tree-btn {
     padding: 6px 10px;
     font-size: 12px;
-    max-width: 140px;
+    max-width: 140px;    
   }
 
   .fbl-new-tree-btn {

@@ -63,6 +63,7 @@ const Canvas: React.FC = () => {
   const lastTouchCenter = useRef<{ x: number; y: number } | null>(null);
   const activeTouchCount = useRef(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
 
   useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth <= 768);
@@ -1074,17 +1075,20 @@ const Canvas: React.FC = () => {
         </div>
       )}
 
+      <div className='app-logo-watermark'>{'Family Tree'}</div>
       {/* Floating toolbar - top center */}
       {!isMaximized && (
         <div className="floating-top-bar">
-          <button className="ftb-btn" onClick={navigateBack} disabled={historyIndex <= 0} title="Go back (←)">←</button>
-          <button className="ftb-btn" onClick={navigateForward} disabled={historyIndex >= history.length - 1} title="Go forward (→)">→</button>
-          <div className="ftb-divider" />
+          {/* <button className="ftb-btn" onClick={navigateBack} disabled={historyIndex <= 0} title="Go back (←)">←</button>
+          <button className="ftb-btn" onClick={navigateForward} disabled={historyIndex >= history.length - 1} title="Go forward (→)">→</button> */}
+          {/* <div className="ftb-divider" /> */}
           <button className={`ftb-btn toggle ${showFullTree ? 'active' : ''}`} onClick={toggleFullTree} title="Full Tree">🌳</button>
           <button className={`ftb-btn toggle ${showSiblings ? 'active' : ''}`} onClick={toggleSiblings} disabled={showFullTree} title="Siblings">👥</button>
           <button className={`ftb-btn toggle ${showCousins ? 'active' : ''}`} onClick={toggleCousins} disabled={showFullTree} title="Cousins">👨‍👩‍👧‍👦</button>
           <div className="ftb-divider" />
-          <button className="ftb-btn primary" onClick={() => openSlider()} title="Add Person">+</button>
+          {/* <button className="ftb-btn primary" onClick={() => openSlider()} title="Add Person">+</button> */}
+          {/* <button className="toolbar-btn" onClick={handleEditSelected} title="Edit Person">✎ Edit</button> */}
+          <button className="toolbar-btn" onClick={() => openSlider()}  title="Add Person">+ Add </button>
           <div className="ftb-divider" />
           <LoginButton variant="ribbon" />
         </div>
@@ -1130,7 +1134,7 @@ const Canvas: React.FC = () => {
         <div className="floating-bottom-left">
           <div className="fbl-tree-selector">
             <button className="fbl-tree-btn" onClick={() => setTreeSelectorOpen(prev => !prev)} title="Switch tree">
-              🌳 {tree?.treeName || 'Select Tree'}
+              🌳 {tree?.treeName || 'Select Tree'}<span className='fbl-tree-btn-arrow'>{'▲'}</span> 
             </button>
             {treeSelectorOpen && (
               <div className="tree-selector-dropdown">
@@ -1232,21 +1236,21 @@ const Canvas: React.FC = () => {
             <span className={`gender-icon ${selectedPerson.gender}`}>
               {selectedPerson.gender === 'male' ? '♂' : '♀'}
             </span>
-            <span className="selected-name">
-              {selectedPerson.firstName} {selectedPerson.lastName}
+            <span className="selected-name" onClick={() => selectPerson(null)}>
+              {selectedPerson.firstName} {selectedPerson.lastName}{''}
             </span>
             {selectedPerson.dod && <span className="deceased-badge">†</span>}
             {defaultPersonId === selectedPerson.personId && <span className="default-badge">★</span>}
           </div>
           <div className="toolbar-actions">
             <button className="toolbar-btn" onClick={handleEditSelected} title="Edit Person">✎ Edit</button>
-            <button className="toolbar-btn" onClick={handleAddParentToSelected} title="Add Parent">↑ Parent</button>
+            {/* <button className="toolbar-btn" onClick={handleAddParentToSelected} title="Add Parent">↑ Parent</button>
             <button className="toolbar-btn" onClick={handleAddChildToSelected} title="Add Child">↓ Child</button>
-            <button className="toolbar-btn" onClick={handleAddSpouseToSelected} title="Add Spouse">♥ Spouse</button>
-            {defaultPersonId !== selectedPerson.personId && (
+            <button className="toolbar-btn" onClick={handleAddSpouseToSelected} title="Add Spouse">♥ Spouse</button> */}
+            {/* {defaultPersonId !== selectedPerson.personId && (
               <button className="toolbar-btn default" onClick={() => setDefaultPerson(selectedPerson.personId)} title="Set as Default">★ Default</button>
-            )}
-            <button className="toolbar-btn close" onClick={() => selectPerson(null)} title="Close">✕</button>
+            )} */}
+            {/* <button className="toolbar-btn close" onClick={() => selectPerson(null)} title="Close">✕</button> */}
           </div>
         </div>
       )}
